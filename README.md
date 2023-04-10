@@ -6,7 +6,7 @@ Actualmente, existen numerosos sitios web dedicados a la publicación de ofertas
 candidatos calificados para llenar esos cargos vacantes. A estos sitios también se suman las páginas de las
 empresas, donde las misma publican de sus ofertas de empleo.
 
-En un mundo cada vez más enfocado en la tecnología, el sector de la tecnología representa una proporción
+En un mundo cada vez más enfocado en la tecnología, dicho sector representa una proporción muy
 significativa dentro de este mercado laboral. Con la creciente adopción de prácticas como el trabajo remoto,
 la computación en la nube y otras tecnologías emergentes, la demanda de habilidades tecnológicas y la exigencia
 de los empleadores sigue aumentando día a día.
@@ -16,11 +16,11 @@ clara y actualizada de las tendencias y oportunidades actuales.
 
 ## Objetivos
 
-El objetivo de este trabajo científico es analizar el mercado laboral actual para identificar los puestos y habilidades más demandados. Además, se busca clasificar y seleccionar las ofertas de trabajo que mejor coincidan con un perfil determinado. Por último, se pretende determinar cuáles son las habilidades recomendables que deben ser adquiridas para completar un perfil específico y aspirar a un puesto de trabajo determinado. Este estudio proporcionará información valiosa a los individuos que buscan trabajo así como a las empresas que buscan contratar y retener talentos.
+El objetivo de este trabajo es analizar el mercado laboral actual a partir de sus datos. Respondiendo preguntas como ¿Cual es el puesto de trabajo más demandado?, ¿Cuales son las habilidades más demandados?, ¿Cuales son los sectores mejor pagados? o ¿Cuales son los sectores más exigentes?. Aunque la lista de preguntas y respuestas finales dependerán de la información concreta que se encuentre en los datos. Además, se busca clasificar y seleccionar las ofertas de trabajo que mejor coincidan con un perfil determinado. Por último, se pretende determinar cuáles son las habilidades recomendables que deben ser adquiridas para completar un perfil específico y aspirar a un puesto de trabajo determinado. Este estudio proporcionará información valiosa a los individuos que buscan trabajo así como a las empresas que buscan contratar y retener talentos.
 
 ## Fuente de Datos
 
-En este casos nuestra fuente de datos serian las múltiples páginas de la web que anuncian ofertas de empleo del sector y región seleccionados para el estudio. A continuación se muestra una lista de ejemplos:
+En este casos nuestra fuente de datos serian las múltiples páginas de la web que anuncian ofertas de empleo del sector y región seleccionados para el estudio. A continuación se muestra una lista de ejemplos (coleccionados sin catalogar, la lista definitiva será una lista más selectiva en la cual se acote la región de interés):
 
 - https://www.getonbrd.com
 - https://www.infojobs.net/candidate/my-infojobs.xhtml?dgv=6385115882063679988
@@ -39,6 +39,19 @@ En este casos nuestra fuente de datos serian las múltiples páginas de la web q
 - https://app.goboon.co/home
 - https://cl.talent.com/jobs
 - https://soaint.hiringroom.com/jobs?source=opcionempleo
+- https://flexjobs.com
+- https://whoishiring.io
+- https://remoteml.com
+- https://freelancer.com
+- https://simplyhired.com
+- https://freshersworld.com
+- https://weworkremotely.com
+- https://upwork.com
+- https://remoteok.io
+- https://devsnap.io
+- https://remote.co
+- https://dice.com
+- https://angel.co
 
 ## Tareas
 
@@ -46,7 +59,8 @@ En este casos nuestra fuente de datos serian las múltiples páginas de la web q
 
   - Scraper: Consiste en extraer información a partir de la estructura HTML de una página web. Este enfoque puede presentar problemas cuando el paginado del sitio no se realiza mediante cambios de url sino que en su lugar realizan un re-rendereado con mayor información tras la ejecución de un botón. En este casos dicha pagina no podrá ser analizada de manara automática sino que sera necesario la descarga manual de las distintas paginas.
   - Detección de APIs públicas o seudo-públicas: En ocasiones se puede revisar las referencias de las paginas para detectar las apis que estas consumen. Esto permitiría la extracción de datos de forma más estructurada y automatizada. El problema en este casos es que dichas apis no presenta una documentación por lo que en ocasiones puede ser complejo interactuar con esta o replicar sus protocolos de seguridad
-
+  - Extracción Semi-automática: En el casos en que ninguno de los enfoques anteriores sean aplicables para alguna de las fuentes en concreto se puede realizar una extracción semi-automática. Este enfoque consta de dos partes, una descarga manual de contenidos HTML para su posterior análisis automático. 
+  
 - Limpieza de la información: El segundo objetivo particular es llevar a cabo la limpieza de los datos extraídos, lo que implica la identificación de dos entidades principales: "skills" o habilidades, y "puestos de trabajo". Además, se abordará el problema de la sinonimia y la sensibilidad a mayúsculas y minúsculas. En esta fase también se debe tener en cuenta el problema de la generalización y la particularizarían, por ejemplo casos como Backend Developer y NodeJs Backend Developer, en este ejemplo se puede considerar, a priori, dos enfoques 1) hay dos puestos de trabajos distintos, lo cual es poco preciso pues en principio uno es subconjunto del otro 2) hay un puesto de trabajo, dos ofertas, y una de ellas especifica un skill requerido
 
 - Análisis estadísticos: El siguiente paso es realizar un estudio estadístico de la información extraída.
