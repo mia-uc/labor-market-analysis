@@ -23,22 +23,22 @@ El objetivo de este trabajo es analizar el mercado laboral actual a partir de su
 En este casos nuestra fuente de datos serian las múltiples páginas de la web que anuncian ofertas de empleo del sector y región seleccionados para el estudio. A continuación se muestra una lista de ejemplos (coleccionados sin catalogar, la lista definitiva será una lista más selectiva en la cual se acote la región de interés):
 
 - https://www.getonbrd.com
-- https://www.infojobs.net/candidate/my-infojobs.xhtml?dgv=6385115882063679988
-- https://www.kitempleo.cl/
-- https://www.opcionempleo.cl/
+- https://www.infojobs.net
+- https://www.kitempleo.cl
+- https://www.opcionempleo.cl
 - https://www.airavirtual.com/portales
-- https://www.tecnoempleo.com/
-- https://remoteok.com/
-- https://www.chiletrabajos.cl/
-- https://developers.turing.com/dashboard/turing_test
+- https://www.tecnoempleo.com
+- https://remoteok.com
+- https://www.chiletrabajos.cl
+- https://developers.turing.com
 - https://careers.gradiant.org/connect/dashboard
-- https://whoishiring.io/search/40.4637/-3.7492/5.0000?time=now-7d
-- https://jobs.smartrecruiters.com/
+- https://whoishiring.io
+- https://jobs.smartrecruiters.com
 - https://www.aliantec.com/busquedas-activas/
 - https://www.getmanfred.com/es/portal
 - https://app.goboon.co/home
 - https://cl.talent.com/jobs
-- https://soaint.hiringroom.com/jobs?source=opcionempleo
+- https://soaint.hiringroom.com
 - https://flexjobs.com
 - https://whoishiring.io
 - https://remoteml.com
