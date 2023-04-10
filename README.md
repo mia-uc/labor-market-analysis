@@ -52,6 +52,15 @@ En este casos nuestra fuente de datos serian las múltiples páginas de la web q
 - https://remote.co
 - https://dice.com
 - https://angel.co
+- https://www.virtuallatinos.com
+- https://www.interfell.com/#/app/home
+- https://www.remotelists.com/en/home-en/
+- https://x-team.com
+- https://thebridge.social
+- https://www.weareseeders.com
+- https://www.remoteco.com
+- https://www.malt.com
+- https://lapieza.io/en
 
 ## Tareas
 
