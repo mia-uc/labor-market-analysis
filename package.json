@@ -1,0 +1,11 @@
+{
+  "name": "labor-market-analysis",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/mia-uc/labor-market-analysis.git",
+  "author": "danielorlando97 <danielorlandoortizpacheco@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^19.9.1"
+  }
+}
