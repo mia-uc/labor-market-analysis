@@ -39,7 +39,8 @@ def get_details_for_job(job: dict, db: MongoInterfaces):
         new_info["jobs_tags"] = [a.get_text().strip() for a in tags.find_all('a')]
 
     header = soup.find('div', {'class': 'gb-company-theme-colored'})
-    applications = header.find('div', {'class': 'size0 mt1'})
+    if header:
+        applications = header.find('div', {'class': 'size0 mt1'})
     
     text = applications.get_text()
     if (match := re.search(r'\d+\s*applications', text.strip())):
