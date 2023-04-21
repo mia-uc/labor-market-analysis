@@ -5,8 +5,13 @@ name = "pypi"
 
 [packages]
 beautifulsoup4 = "*"
+typer = {extras = ["all"], version = "*"}
+requests = "*"
+pymongo = "*"
+python-dotenv = "*"
 
 [dev-packages]
+python-dotenv = "*"
 
 [requires]
 python_version = "3.11"
