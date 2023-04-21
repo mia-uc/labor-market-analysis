@@ -16,4 +16,4 @@ RUN pipenv install --dev --system --deploy
 
 COPY . /usr/src/app/
 
-CMD ["pipenv", "run", "python", "main.py", "getonbrd-update"]
+CMD ["python", "main.py", "getonbrd-update"]
