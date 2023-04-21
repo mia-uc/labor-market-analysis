@@ -39,15 +39,14 @@ def get_details_for_job(job: dict, db: MongoInterfaces):
         new_info["jobs_tags"] = [a.get_text().strip() for a in tags.find_all('a')]
 
     header = soup.find('div', {'class': 'gb-company-theme-colored'})
-    if header:
-        applications = header.find('div', {'class': 'size0 mt1'})
-    
-    text = applications.get_text()
-    if (match := re.search(r'\d+\s*applications', text.strip())):
-        new_info["n_applications"] = match.group().replace('\n', ' ').strip()
+    if header and (applications := header.find('div', {'class': 'size0 mt1'})):
+        text = applications.get_text()
+        
+        if (match := re.search(r'\d+\s*applications', text.strip())):
+            new_info["n_applications"] = match.group().replace('\n', ' ').strip()
 
-    if (match := re.search(r'Requires\s*applying\s*in\s*\w+', text)):
-        new_info["language_application_required"] = match.group()
+        if (match := re.search(r'Requires\s*applying\s*in\s*\w+', text)):
+            new_info["language_application_required"] = match.group()
 
     new_info['not_scraped_yet'] = False
 
