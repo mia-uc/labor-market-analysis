@@ -58,6 +58,7 @@ def jobs(n_page = 50, init = 0, **config):
         res = json.loads(response.content)
 
         for job in res['jobs']:
+            job['published_at'] = datetime.strptime(job['published_at'], '%b %d').replace(datetime.now().year)
             yield job
 
 # %%
@@ -76,7 +77,7 @@ def find_jobs_and_save(n_page, init, **configs):
 # %%
 
 FIND = '......... Finding jobs from now until {date} ...........'
-JOB_ANALYZED = "Job {date} #{n} ==> {name}"
+JOB_ANALYZED_BY_TIME = "Job {date} #{n} ==> {name}"
 
 def find_jobs_until_a_date(date, **configs):
     top = datetime.strptime(date, '%b %d').replace(datetime.now().year)
@@ -90,7 +91,7 @@ def find_jobs_until_a_date(date, **configs):
         if not db.exists(url = job['url']):
             db.insert(job)
 
-        date = datetime.strptime(job['published_at'], '%b %d').replace(datetime.now().year)
-        print(JOB_ANALYZED.format(n=i, name = job['title'], date = date))
+        date = job['published_at']
+        print(JOB_ANALYZED_BY_TIME.format(n=i, name = job['title'], date = date))
         if date < top and not job['pinned']:
             break

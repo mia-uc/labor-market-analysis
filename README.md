@@ -22,45 +22,47 @@ El objetivo de este trabajo es analizar el mercado laboral actual a partir de su
 
 En este casos nuestra fuente de datos serian las múltiples páginas de la web que anuncian ofertas de empleo del sector y región seleccionados para el estudio. A continuación se muestra una lista de ejemplos (coleccionados sin catalogar, la lista definitiva será una lista más selectiva en la cual se acote la región de interés):
 
-- https://www.getonbrd.com
-- https://www.infojobs.net
-- https://www.kitempleo.cl
-- https://www.opcionempleo.cl
-- https://www.airavirtual.com/portales
-- https://www.tecnoempleo.com
-- https://remoteok.com
-- https://www.chiletrabajos.cl
-- https://developers.turing.com
-- https://careers.gradiant.org/connect/dashboard
-- https://whoishiring.io
-- https://jobs.smartrecruiters.com
-- https://www.aliantec.com/busquedas-activas/
-- https://www.getmanfred.com/es/portal
-- https://app.goboon.co/home
-- https://cl.talent.com/jobs
-- https://soaint.hiringroom.com
-- https://flexjobs.com
-- https://whoishiring.io
-- https://remoteml.com
-- https://freelancer.com
-- https://simplyhired.com
-- https://freshersworld.com
-- https://weworkremotely.com
-- https://upwork.com
-- https://remoteok.io
-- https://devsnap.io
-- https://remote.co
-- https://dice.com
-- https://angel.co
-- https://www.virtuallatinos.com
-- https://www.interfell.com/#/app/home
-- https://www.remotelists.com/en/home-en/
-- https://x-team.com
-- https://thebridge.social
-- https://www.weareseeders.com
-- https://www.remoteco.com
-- https://www.malt.com
-- https://lapieza.io/en
+- [x] https://www.getonbrd.com
+- [] https://www.infojobs.net
+- [] https://www.kitempleo.cl
+- [] https://www.opcionempleo.cl
+- [] https://www.airavirtual.com/portales
+- [] https://www.tecnoempleo.com
+- [] https://remoteok.com
+- [] https://www.chiletrabajos.cl
+- [] https://developers.turing.com
+- [] https://careers.gradiant.org/connect/dashboard
+- [] https://whoishiring.io
+- [] https://jobs.smartrecruiters.com
+- [] https://www.aliantec.com/busquedas-activas/
+- [] https://www.getmanfred.com/es/portal
+- [] https://app.goboon.co/home
+- [] https://cl.talent.com/jobs
+- [] https://soaint.hiringroom.com
+- [] https://flexjobs.com
+- [] https://whoishiring.io
+- [] https://remoteml.com
+- [] https://freelancer.com
+- [] https://simplyhired.com
+- [] https://freshersworld.com
+- [] https://weworkremotely.com
+- [] https://upwork.com
+- [] https://remoteok.io
+- [] https://devsnap.io
+- [] https://remote.co
+- [] https://dice.com
+- [] https://angel.co
+- [] https://www.virtuallatinos.com
+- [] https://www.interfell.com/#/app/home
+- [] https://www.remotelists.com/en/home-en/
+- [] https://x-team.com
+- [] https://thebridge.social
+- [] https://www.weareseeders.com
+- [] https://www.remoteco.com
+- [] https://www.malt.com
+- [] https://lapieza.io/en
+- [] https://www.trabajando.cl
+- [] https://www.laborum.cl
 
 ## Tareas
 
@@ -68,8 +70,8 @@ En este casos nuestra fuente de datos serian las múltiples páginas de la web q
 
   - Scraper: Consiste en extraer información a partir de la estructura HTML de una página web. Este enfoque puede presentar problemas cuando el paginado del sitio no se realiza mediante cambios de url sino que en su lugar realizan un re-rendereado con mayor información tras la ejecución de un botón. En este casos dicha pagina no podrá ser analizada de manara automática sino que sera necesario la descarga manual de las distintas paginas.
   - Detección de APIs públicas o seudo-públicas: En ocasiones se puede revisar las referencias de las paginas para detectar las apis que estas consumen. Esto permitiría la extracción de datos de forma más estructurada y automatizada. El problema en este casos es que dichas apis no presenta una documentación por lo que en ocasiones puede ser complejo interactuar con esta o replicar sus protocolos de seguridad
-  - Extracción Semi-automática: En el casos en que ninguno de los enfoques anteriores sean aplicables para alguna de las fuentes en concreto se puede realizar una extracción semi-automática. Este enfoque consta de dos partes, una descarga manual de contenidos HTML para su posterior análisis automático. 
-  
+  - Extracción Semi-automática: En el casos en que ninguno de los enfoques anteriores sean aplicables para alguna de las fuentes en concreto se puede realizar una extracción semi-automática. Este enfoque consta de dos partes, una descarga manual de contenidos HTML para su posterior análisis automático.
+
 - Limpieza de la información: El segundo objetivo particular es llevar a cabo la limpieza de los datos extraídos, lo que implica la identificación de dos entidades principales: "skills" o habilidades, y "puestos de trabajo". Además, se abordará el problema de la sinonimia y la sensibilidad a mayúsculas y minúsculas. En esta fase también se debe tener en cuenta el problema de la generalización y la particularizarían, por ejemplo casos como Backend Developer y NodeJs Backend Developer, en este ejemplo se puede considerar, a priori, dos enfoques 1) hay dos puestos de trabajos distintos, lo cual es poco preciso pues en principio uno es subconjunto del otro 2) hay un puesto de trabajo, dos ofertas, y una de ellas especifica un skill requerido
 
 - Análisis estadísticos: El siguiente paso es realizar un estudio estadístico de la información extraída.
