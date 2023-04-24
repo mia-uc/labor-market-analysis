@@ -4,6 +4,8 @@ import requests
 import json
 import base64
 
+# References http://trabajando.cl
+
 class WorkingCLScraper(HttpScraper):
     def __init__(self) -> None:
         super().__init__(
@@ -29,7 +31,7 @@ class WorkingCLScraper(HttpScraper):
         return ''.join([
             "https://www.trabajando.cl/api/searchjob?",
             f"Pagina={n_page}",
-            "&AliasOrden=5",
+            "&AliasOrden=3",
             "&TextoLibre",
             "&IDEmpresas",
             "&avisoconfidencial",
