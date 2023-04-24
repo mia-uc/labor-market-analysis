@@ -16,4 +16,4 @@ RUN pipenv install --dev --system --deploy
 
 COPY . /usr/src/app/
 
-CMD ["pipenv","run","python", "main.py", "laborum", '612', '--offset', '3']
+CMD ["python", "main.py", "laborum", '612', '--offset', '3']
