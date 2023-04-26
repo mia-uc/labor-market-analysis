@@ -1,15 +1,23 @@
-run_getonbrd:
-	docker build -t get_on_board -f ./src/scrapers/getonboard/Dockerfile .
-	docker run --env-file=.docker.env --name get_on_board get_on_board
+drop: 
+	docker stop jobs_scrapers
+	docker rm jobs_scrapers
 
-clean_getonbrd:
-	docker stop get_on_board
-	docker rm get_on_board
+build:
+	docker build -t jobs_scrapers -f ./Dockerfile .
 
-run_laborum:
-	docker build -t laborum -f ./src/scrapers/laborum/Dockerfile .
-	docker run --env-file=.docker.env --name laborum laborum
+# run_getonbrd:
+# 	docker run --env-file=.docker.env --name get_on_board get_on_board
 
-clean_laborum:
-	docker stop laborum
-	docker rm laborum
+# clean_getonbrd:
+# 	docker stop get_on_board
+# 	docker rm get_on_board
+
+# run_laborum:
+# 	docker build -t laborum -f ./src/scrapers/laborum/Dockerfile .
+# 	docker run --env-file=.docker.env --name laborum laborum
+
+# clean_laborum:
+
+
+update_trabajando_cl:
+	docker run --env-file=.docker.env --name get_on_board jobs_scrapers python main.py update_trabajando_cl

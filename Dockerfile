@@ -15,5 +15,3 @@ COPY ./Pipfile.lock /usr/src/app/Pipfile.lock
 RUN pipenv install --dev --system --deploy
 
 COPY . /usr/src/app/
-
-CMD ["python", "main.py", "laborum", '612', '--offset', '3']

@@ -73,7 +73,7 @@ class GetOnBoardScraper(HttpScraper):
     #                                           #
     #############################################
     def __job_id__(self, job):
-        return {'url': job['url']}
+        return {'url': job['url'], 'id': job['id']}
     
     def __get_page__(self, page) -> list[dict]:
         response  = self.post(self.__url_compose__(page))
