@@ -4,7 +4,7 @@ from src.scrapers import laborum as laborum
 from src.scrapers import trabajando_cl
 from dotenv import load_dotenv
 from pymongo import MongoClient
-
+import os
 
 load_dotenv()
 app = Typer()
@@ -15,21 +15,27 @@ trabajando_cl.commands(app)
 
 
 @app.command()
-def mongo_migrate():
+def mongo_migrate(collection: str):
+
+    connection_string =  os.getenv("MONGO_CONN_STRING")
+    db_name = os.getenv('MONGO_DB')
+
 
     # Conexión con la instancia de Origen
-    origen_cliente = MongoClient('mongodb://<usuario>:<password>@<servidor_origen>:<puerto_origen>')
-    origen_db = origen_cliente['<nombre_de_la_db_origen>']
-    origen_coleccion = origen_db['<nombre_de_la_coleccion_origen>']
-    
+    origen_cliente = MongoClient(connection_string)
+    origen_db = origen_cliente[db_name]
+    origen_collection = origen_db[collection]
+
+    des_connection_string =  os.getenv("DESTINO_MONGO_CONN_STRING")
     # Conexión con la instancia de Destino
-    destino_cliente = MongoClient('mongodb://<usuario>:<password>@<servidor_destino>:<puerto_destino>')
-    destino_db = destino_cliente['<nombre_de_la_db_destino>']
-    destino_coleccion = destino_db['<nombre_de_la_coleccion_destino>']
-    
+    destino_cliente = MongoClient(des_connection_string)
+    destino_db = destino_cliente[db_name]
+    destino_collection = destino_db[collection]
+
     # Copiar los datos de la colección desde origen a destino
-    for documento in origen_coleccion.find():
-        destino_coleccion.insert_one(documento)
+    for i, documento in enumerate(origen_collection.find()):
+        print(f'............. {i} .............', end='\r')
+        destino_collection.insert_one(documento)
 
 if __name__ == "__main__":
     app()

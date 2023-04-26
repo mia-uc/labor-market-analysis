@@ -1,6 +1,6 @@
 drop: 
-	docker stop jobs_scrapers
-	docker rm jobs_scrapers
+	docker stop ${container}
+	docker rm ${container}
 
 build:
 	docker build -t jobs_scrapers -f ./Dockerfile .
@@ -17,7 +17,19 @@ build:
 # 	docker run --env-file=.docker.env --name laborum laborum
 
 # clean_laborum:
+run: 
+	docker run -d --env-file=.docker.env --name laborum jobs_scrapers python main.py laborum
+	docker run -d --env-file=.docker.env --name getonboard jobs_scrapers python main.py getonboard
+	docker run -d --env-file=.docker.env --name trabajando_cl jobs_scrapers python main.py trabajando_cl
 
+run_laborum:
+	docker run --env-file=.docker.env --name laborum jobs_scrapers python main.py laborum
+
+run_getonbrd:
+	docker run --env-file=.docker.env --name getonboard jobs_scrapers python main.py getonboard
+
+run_trabajando_cl:
+	docker run --env-file=.docker.env --name trabajando_cl jobs_scrapers python main.py trabajando_cl
 
 update_trabajando_cl:
 	docker run --env-file=.docker.env --name get_on_board jobs_scrapers python main.py update_trabajando_cl

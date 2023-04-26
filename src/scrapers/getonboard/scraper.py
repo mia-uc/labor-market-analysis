@@ -114,4 +114,14 @@ class GetOnBoardScraper(HttpScraper):
             if (match := re.search(r'Requires\s*applying\s*in\s*\w+', text)):
                 new_info["language_application_required"] = match.group()
 
+
+        span = soup.find('span', {"itemprop":"jobLocation"})
+        if not span:
+            span =  soup.find('span', {"itemprop":"qualifications"})
+
+        if span:
+            job_category = span.find_next_sibling('a')
+            if job_category:
+                new_info['job_category'] = job_category.text.strip()
+
         return job | new_info

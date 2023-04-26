@@ -75,4 +75,9 @@ class LaborumScraper(HttpScraper):
 
     def __get_job__(self, job: dict) -> list[dict]:
         response = self.get(f"https://www.laborum.cl/api/candidates/fichaAvisoNormalizada/{job['id']}")
+
+        if type(response) == str:
+            print(response)
+            return None
+        
         return job | response

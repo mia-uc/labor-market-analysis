@@ -48,7 +48,8 @@ class HttpScraper:
 
         if not check or not already:
             job = self.__get_job__(job)
-            self.db.insert(job)
+            if job:
+                self.db.insert(job)
 
         return job
 
@@ -125,27 +126,34 @@ class HttpScraper:
         
         print(f'....... The {self.db_name} scraper has finished, {page - skips} pages and {index} jobs have been viewed')
 
-    def update(self, parallel = False):
+    def update(self, parallel = False, force = False):
         print(f'....... Updating jobs in {self.db_name}')
         exe = ThreadPoolExecutor()
 
         def f(info):
             index, job = info
             response = self.__get_job__(job)
-            response['not_scraped_yet'] = False
-
-            if '_id' in response:
-                del response['_id']
-
             self.logger(index, job, True)
-            self.db.update(response, **self.__job_id__(job))
+
+            if response:
+                response['not_scraped_yet'] = False
+
+                if '_id' in response:
+                    del response['_id']
+
+                self.db.update(response, **{ 'not_scraped_yet': True, **self.__job_id__(job)})
+
+        conditions = {}
+
+        if not force:
+            conditions['not_scraped_yet'] = True
 
         if parallel:
             return list(exe.map(
-                f,  enumerate(self.db.all(not_scraped_yet = True))
+                f,  enumerate(self.db.all(**conditions))
             ))
 
-        for info in enumerate(self.db.all(not_scraped_yet = True)):
+        for info in enumerate(self.db.all(**conditions)):
 
             try:
                 f(info)

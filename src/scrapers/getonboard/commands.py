@@ -26,7 +26,7 @@ def commands(app: Typer):
         )
 
     @app.command()
-    def update_getonbrd(parallel : bool = Option(False, "--parallel")):
+    def update_getonbrd(parallel : bool = Option(False, "--parallel"), force : bool = Option(False, "--force")):
         scraper = GetOnBoardScraper()
 
-        return scraper.update(parallel)
+        return scraper.update(parallel, force)

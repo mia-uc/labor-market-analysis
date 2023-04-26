@@ -27,4 +27,4 @@ class MongoInterfaces:
         return self.doc.find(condition)
     
     def update(self, body, **keys):
-        return self.doc.update_one(keys, {'$set': body})
+        return self.doc.update_many(keys, {'$set': body})
