@@ -15,7 +15,7 @@ trabajando_cl.commands(app)
 
 
 @app.command()
-def mongo_migrate(collection: str):
+def mongo_migrate():
 
     connection_string =  os.getenv("MONGO_CONN_STRING")
     db_name = os.getenv('MONGO_DB')
@@ -24,18 +24,22 @@ def mongo_migrate(collection: str):
     # Conexión con la instancia de Origen
     origen_cliente = MongoClient(connection_string)
     origen_db = origen_cliente[db_name]
-    origen_collection = origen_db[collection]
+
 
     des_connection_string =  os.getenv("DESTINO_MONGO_CONN_STRING")
     # Conexión con la instancia de Destino
     destino_cliente = MongoClient(des_connection_string)
     destino_db = destino_cliente[db_name]
-    destino_collection = destino_db[collection]
 
-    # Copiar los datos de la colección desde origen a destino
-    for i, documento in enumerate(origen_collection.find()):
-        print(f'............. {i} .............', end='\r')
-        destino_collection.insert_one(documento)
+    for collection in ['GetOnBoard', 'Laborum', 'Trabajando.cl']:
+        print(f'------------------- {collection} --------------------------')
+
+        origen_collection = origen_db[collection]
+        destino_collection = destino_db[collection]
+        # Copiar los datos de la colección desde origen a destino
+        for i, documento in enumerate(origen_collection.find()):
+            print(f'------------------- {i} --------------------------', end='\r')
+            destino_collection.insert_one(documento)
 
 if __name__ == "__main__":
     app()
