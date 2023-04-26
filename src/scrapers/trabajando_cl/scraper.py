@@ -8,16 +8,12 @@ import base64
 
 class WorkingCLScraper(HttpScraper):
     def __init__(self) -> None:
-        super().__init__(
-            'Trabajando.cl', 
-            'ofertas', 
-            self.logger
-        )
+        super().__init__('Trabajando.cl')
 
         self.cookie = os.getenv("TrabajandoCL-Cookie")
 
-    def logger(self, index, job):
-        print(f"Job #{index} ==> {job['cargo']}")
+    def logger(self, index, job, already):
+        print(f"Job {'✅' if already else '🆕'} #{index} ==> {job['cargo']}")
 
 
     #############################################
@@ -62,11 +58,10 @@ class WorkingCLScraper(HttpScraper):
     def __job_id__(self, job):
         return {'idOferta': job['idOferta']}
     
-    def requests(self, page) -> dict:
-        response = requests.get(
-            url=self.__url_compose__(n_page = page), 
-            headers=self.__headers__
-        )
-        
-        res = json.loads(response.content)
-        return res[self.list_name]
+    def __get_page__(self, page) -> list[dict]:
+        response  = self.get(self.__url_compose__(page))
+        return response['ofertas']
+
+    def __get_job__(self, job: dict) -> list[dict]:
+        response = self.get(f"https://www.trabajando.cl/api/ofertas/{job['idOferta']}")
+        return job | response

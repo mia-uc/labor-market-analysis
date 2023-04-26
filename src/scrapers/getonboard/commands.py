@@ -1,33 +1,32 @@
 
-from typer import Typer
-from .find_jobs import find_jobs_and_save, find_jobs_until_a_date
-from .find_details import find_details_for_new_job
+from typer import Option, Typer
 import os
+
+from .scraper import GetOnBoardScraper
 
 
 # Reference https://www.getonboard.com
+    
+
 
 def commands(app: Typer):
+    
     @app.command()
-    def getonbrd(n_page: int, offset: int = 0):
-        find_jobs_and_save(
-            n_page, offset,
-            cookies = os.getenv("GetOnBoard-Cookie"), 
-            x_client  = os.getenv("GetOnBoard-X-CLIENT-ID"), 
-            x_csrf = os.getenv("GetOnBoard-X-CSRF-Token"), 
-            x_new_relic  = os.getenv("GetOnBoard-X-NewRelic-ID"), 
+    def getonbrd(n_page: int = -1, offset: int = 0, date: str = None, parallel : bool = Option(False, "--parallel")):
+        scraper = GetOnBoardScraper()
+
+        # params = {}
+        # if date:
+        #     params
+    
+        return scraper.save_all(
+            n_page=n_page,
+            skips=offset,
+            parallel = parallel
         )
 
     @app.command()
-    def getonbrd_by_date(date: str):
-        find_jobs_until_a_date(
-            date,
-            cookies = os.getenv("GetOnBoard-Cookie"), 
-            x_client  = os.getenv("GetOnBoard-X-CLIENT-ID"), 
-            x_csrf = os.getenv("GetOnBoard-X-CSRF-Token"), 
-            x_new_relic  = os.getenv("GetOnBoard-X-NewRelic-ID"), 
-        )
+    def update_getonbrd(parallel : bool = Option(False, "--parallel")):
+        scraper = GetOnBoardScraper()
 
-    @app.command()
-    def getonbrd_update():
-        return find_details_for_new_job()
+        return scraper.update(parallel)

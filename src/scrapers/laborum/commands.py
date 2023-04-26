@@ -1,27 +1,30 @@
 
-from typer import Typer
-from .find_jobs import find_jobs_and_save, find_jobs_until_a_date
-# from .find_details import find_details_for_new_job
-import os
+from typer import Typer, Option
+from .scraper import LaborumScraper
 
 # Reference https://www.laborum.cl
 
 def commands(app: Typer):
+    
     @app.command()
-    def laborum(n_page: int, offset: int = 0):
-        find_jobs_and_save(
-            n_page, offset,
-            cookies = os.getenv("Laborum-Cookie"), 
-            session  = os.getenv("Laborum-Session"), 
+    def laborum(n_page: int = -1, offset: int = 0, date: str = None, parallel : bool = Option(False, "--parallel")):
+        scraper = LaborumScraper()
+
+        # params = {}
+        # if date:
+        #     params
+    
+        return scraper.save_all(
+            n_page=n_page,
+            skips=offset,
+            parallel = parallel
         )
 
     @app.command()
-    def laborum_by_date(date: str):
-        find_jobs_until_a_date(
-            date,
-            cookies = os.getenv("Laborum-Cookie"), 
-            session  = os.getenv("Laborum-Session"), 
-        )
+    def update_laborum(parallel : bool = Option(False, "--parallel")):
+        scraper = LaborumScraper()
+
+        return scraper.update(parallel)
 
     # @app.command()
     # def getonbrd_update():

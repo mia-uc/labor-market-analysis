@@ -11,12 +11,7 @@ def url_compose(page):
     :param int offset: How many page the api have to skip before to count the 30 jobs which will be returned
     """
     'https://www.laborum.cl/api/avisos/searchNormalizado?pageSize=100&page=0'
-    return ''.join([
-        "https://www.laborum.cl/api/avisos/searchNormalizado?",
-        "pageSize=30", # This api has 30 as max page size
-        f"&page={page}",
-        '&sort=fechaOnline%20DESC'
-    ])
+
 
 def headers_compose(cookies, session):
 
