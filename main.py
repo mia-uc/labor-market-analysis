@@ -31,7 +31,7 @@ def mongo_migrate():
     destino_cliente = MongoClient(des_connection_string)
     destino_db = destino_cliente[db_name]
 
-    for collection in ['GetOnBoard', 'Laborum', 'Trabajando.cl']:
+    for collection in ['Laborum', 'Trabajando.cl']:
         print(f'------------------- {collection} --------------------------')
 
         origen_collection = origen_db[collection]

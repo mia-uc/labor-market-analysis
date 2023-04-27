@@ -20,7 +20,7 @@ class GetOnBoardScraper(HttpScraper):
         self.x_new_relic  = os.getenv("GetOnBoard-X-NewRelic-ID") 
 
     def logger(self, index, job, already):
-        print(f"Job {'✅' if already else '🆕'} #{index} ==> {job['title']}")
+        print(f"From {job['published_at']} Job {'✅' if already else '🆕'} #{index} ==> {job['title']}")
 
 
     #############################################

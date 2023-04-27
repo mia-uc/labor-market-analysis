@@ -13,7 +13,7 @@ class WorkingCLScraper(HttpScraper):
         self.cookie = os.getenv("TrabajandoCL-Cookie")
 
     def logger(self, index, job, already):
-        print(f"Job {'✅' if already else '🆕'} #{index} ==> {job['cargo']}")
+        print(f"From {job['fechaPublicacion']} Job {'✅' if already else '🆕'} #{index} ==> {job['cargo']}")
 
 
     #############################################

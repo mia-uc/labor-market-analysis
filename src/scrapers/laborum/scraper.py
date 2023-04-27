@@ -12,7 +12,7 @@ class LaborumScraper(HttpScraper):
         self.session  = os.getenv("Laborum-Session") 
 
     def logger(self, index, job, already):
-        print(f"Job {'✅' if already else '🆕'} #{index} ==> {job['titulo']}")
+        print(f"From {job['fechaPublicacion']} Job {'✅' if already else '🆕'} #{index} ==> {job['titulo']}")
 
 
     #############################################
