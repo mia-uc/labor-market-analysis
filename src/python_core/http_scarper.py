@@ -3,6 +3,7 @@ import json
 from src.etl_process.python_mongo_tools import MongoInterfaces
 from concurrent.futures import ThreadPoolExecutor
 from functools import partial
+from logging import warn
 
 class HttpScraper:
     def __init__(self, db_name) -> None:
@@ -47,9 +48,12 @@ class HttpScraper:
         self.logger(index, job, already)
 
         if not check or not already:
-            job = self.__get_job__(job)
-            if job:
-                self.db.insert(job)
+            try:
+                job = self.__get_job__(job)
+                if job:
+                    self.db.insert(job)
+            except json.JSONDecodeError:
+                warn("There were an error")
 
         return job
 
