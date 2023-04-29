@@ -9,7 +9,7 @@ class LaborumScraper(HttpScraper):
         super().__init__('Laborum')
 
         self.cookies = os.getenv("Laborum-Cookie")
-        self.session  = os.getenv("Laborum-Session") 
+        # self.session  = os.getenv("Laborum-Session") 
 
     def logger(self, index, job, already):
         print(f"From {job['fechaPublicacion']} Job {'✅' if already else '🆕'} #{index} ==> {job['titulo']}")
@@ -47,7 +47,8 @@ class LaborumScraper(HttpScraper):
             'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.2 Safari/605.1.15',
             'Cookie': self.cookies,
             'x-site-id': 'BMCL',
-            'x-session-jwt': self.session
+            'x-session-jwt': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uSWQiOiJmYTVkYjRmMC1lMDY0LTExZWQtODc0NS0xOWNhODQ2ZmJiZjYiLCJpYXQiOjE2ODIwOTU5ODIsImV4cCI6MTY4NDY4Nzk4Mn0.cKwIL-rZlfi7j8vAkOw7yuJRUhVyYu84BRrfQzqxRJA'
+            # 'x-session-jwt': self.session
         }
 
 
