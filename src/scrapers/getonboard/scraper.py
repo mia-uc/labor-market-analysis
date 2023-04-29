@@ -101,7 +101,7 @@ class GetOnBoardScraper(HttpScraper):
             new_info["url_to_apply_quick"] = quick_apply_bottom.get('href')
 
 
-        if (tags := soup.find('div', {"class":"gb-tags", "itemprop":"skills"})):
+        if (tags := soup.find('div', {"itemprop":"skills"})):
             new_info["jobs_tags"] = [a.get_text().strip() for a in tags.find_all('a')]
 
         header = soup.find('div', {'class': 'gb-company-theme-colored'})
@@ -113,15 +113,9 @@ class GetOnBoardScraper(HttpScraper):
 
             if (match := re.search(r'Requires\s*applying\s*in\s*\w+', text)):
                 new_info["language_application_required"] = match.group()
-
-
-        span = soup.find('span', {"itemprop":"jobLocation"})
-        if not span:
-            span =  soup.find('span', {"itemprop":"qualifications"})
-
-        if span:
-            job_category = span.find_next_sibling('a')
-            if job_category:
+        
+        if (span := soup.find('span', {"itemprop":"qualifications"})):
+            if (job_category := span.find_next_sibling('a')):
                 new_info['job_category'] = job_category.text.strip()
 
         return job | new_info
