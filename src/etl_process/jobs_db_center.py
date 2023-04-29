@@ -3,7 +3,7 @@ from datetime import datetime
 
 class JobsDBCenter:
     def __init__(self) -> None:
-        self.db = MongoInterfaces('CleanJobs')
+        self.db = MongoInterfaces('CleanITJobs')
     
     def migrate(
         self,
