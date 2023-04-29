@@ -87,7 +87,32 @@ class GetOnBoardCleanPipeline:
                 '$exists': True
             },
             'job_category' : { # It only matter if is a jobs of IT
-                '$in': ['']
+                # ITs
+                # Programming 
+                # Hardware / Electronics 
+                # SysAdmin / DevOps / QA 
+                # Data Science / Analytics
+                # Mobile Development 
+                # Sales aprox to Data Science
+                # Cybersecurity
+                # 
+                # Related with ITs 
+                # Design / UX => Graphic Design  
+                # Operations / Admin => Team Leander  
+                # Product, Innovation & Agile => Scrum Master 
+                # Content, Advertising & Media == Digital Marketing'
+                # Customer Support 
+                # People & HR
+
+                '$in': [
+                    'Programming',
+                    'Hardware / Electronics',
+                    'SysAdmin / DevOps / QA',
+                    'Data Science / Analytics',
+                    'Mobile Development ',
+                    'Sales',
+                    'Cybersecurity',
+                ]
             }
         }
 

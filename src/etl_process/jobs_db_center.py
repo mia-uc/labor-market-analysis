@@ -33,9 +33,9 @@ class JobsDBCenter:
             assert not max_salary or (type(max_salary) in [int, float] and max_salary >= 0)
         
 
-        assert not seniority or seniority in ['senior']
-        assert not work_modality or work_modality in []
-        assert not contract_type or contract_type in []
+        assert not seniority or seniority in ['senior', 'semi-senior', 'without-experience', 'junior', 'expert']
+        assert not work_modality or work_modality in ['hybrid', 'on-place', 'remote']
+        assert not contract_type or contract_type in ['full-time', 'part-time', 'freelance', 'internship']
         assert not hiring_organization or type(hiring_organization) == str
         assert not description or type(description) == str
         assert not country or type(country) == str
