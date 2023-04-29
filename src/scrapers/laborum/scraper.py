@@ -63,7 +63,9 @@ class LaborumScraper(HttpScraper):
         response  = self.post(
             self.__url_compose__(page), 
             body= {
-                "filtros":[],
+                "filtros":[
+                    {"id":"area","value":"tecnologia-sistemas-y-telecomunicaciones"}
+                ],
                 "busquedaExtendida":True,
                 "tipoDetalle":"full",
                 "withHome":False,
