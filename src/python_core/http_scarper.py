@@ -141,7 +141,12 @@ class HttpScraper:
                 if '_id' in response:
                     del response['_id']
 
-                self.db.update(response, **{ 'not_scraped_yet': True, **self.__job_id__(job)})
+                keys = self.__job_id__(job)
+
+                if not force:
+                    keys['not_scraped_yet'] = True
+
+                self.db.update(response, **keys)
 
         conditions = {}
 
