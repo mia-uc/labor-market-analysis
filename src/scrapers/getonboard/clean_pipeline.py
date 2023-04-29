@@ -5,7 +5,8 @@ class GetOnBoardTransformer:
     def __init__(self, job) -> None:
         self.job = job
 
-    def __getattribute__(self, __name: str):
+    def __getattr__(self, __name: str):
+
         try:
             return self.job[__name]
         except KeyError:
@@ -58,17 +59,17 @@ class GetOnBoardTransformer:
     @property
     def hiring_organization(self):
         try:
-            return self.jon['hiring_company']
+            return self.job['hiring_company']
         except KeyError:
             pass
 
         try:
-            return self.jon['hiring_organization']
+            return self.job['hiring_organization']
         except KeyError:
             pass
 
         try:
-            return self.jon['company']['name']
+            return self.job['company']['name']
         except Exception:
             pass
 
@@ -118,9 +119,9 @@ class GetOnBoardCleanPipeline:
 
         if not self.force:
             # Take only the data witch have synced yet
-            _match['already_fetch'] = {'$not': {'$exists': True}}
+            _match['already_fetch'] = {'$exists': False}
 
-
+        aggregate.append({'$match': _match})
         return self.db.doc.aggregate(aggregate)
     
     def run(self, centered_db: JobsDBCenter):
@@ -129,7 +130,7 @@ class GetOnBoardCleanPipeline:
             transformed_job = GetOnBoardTransformer(job)
 
             centered_db.migrate(
-                id = transformed_job.id,
+                _id = transformed_job.id,
                 name = transformed_job.title,
                 min_salary = transformed_job.min_salary,
                 max_salary = transformed_job.max_salary,
@@ -147,7 +148,7 @@ class GetOnBoardCleanPipeline:
 
             print(f"..... Cleaning the job #{i} => {transformed_job.id} => {transformed_job.title}")
 
-            self.db.update({'already_fetch': True}, {'id': job['id'], 'url': job['url']})
+            self.db.update({'already_fetch': True}, **{'id': job['id'], 'url': job['url']})
     
 
 

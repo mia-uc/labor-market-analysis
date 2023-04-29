@@ -16,7 +16,7 @@ class JobsDBCenter:
         seniority : str = None,
         work_modality : str = None,
         contract_type : str = None,
-        published_at : datetime.datetime = None,
+        published_at : datetime = None,
         hiring_organization : str = None,
         description : str = None,
         country : str = None,
@@ -58,4 +58,4 @@ class JobsDBCenter:
             'city' : city,
         }
 
-        self.db.update(body, {'id': _id, 'origin': origin})
+        self.db.update(body, **{'id': _id, 'origin': origin})
