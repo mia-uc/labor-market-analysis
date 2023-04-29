@@ -91,8 +91,8 @@ class GetOnBoardScraper(HttpScraper):
 
         new_info = {}
 
-        body = soup.find("div", {"id": "job-body", "itemprop": 'description'})
-        new_info['body'] = body.get_text().strip()
+        if (body := soup.find("div", {"id": "job-body", "itemprop": 'description'})):
+            new_info['body'] = body.get_text().strip()
 
         if (apply_bottom := soup.find("a", {"id": "apply_bottom"})):
             new_info["url_to_apply"] = apply_bottom.get('href')
