@@ -1,4 +1,4 @@
-from etl_process.python_mongo_tools import MongoInterfaces
+from src.etl_process.python_mongo_tools import MongoInterfaces
 from datetime import datetime
 
 class JobsDBCenter:
