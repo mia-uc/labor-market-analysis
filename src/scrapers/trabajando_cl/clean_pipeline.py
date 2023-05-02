@@ -90,7 +90,7 @@ class WorkingCLTransformer:
     
     @property
     def published_at(self):
-        return self.job['fechaExpiracionFormatoIngles']
+        return self.job['fechaPublicacionFormatoIngles']
 
     @property
     def hiring_organization(self):
