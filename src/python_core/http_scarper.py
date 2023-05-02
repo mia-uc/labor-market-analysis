@@ -64,8 +64,15 @@ class HttpScraper:
         job['not_scraped_yet'] = True
         return job
 
+    @property
+    def http_client(self):
+        if hasattr(self, 'session'):
+            return self.session
+        
+        return requests
+
     def post(self, url, body = {}) -> dict:
-        response = requests.post(
+        response = self.http_client.post(
             url=url, 
             data=json.dumps(body), 
             headers=self.__headers__
@@ -77,11 +84,9 @@ class HttpScraper:
             print(response.content)
 
             raise e
-
-
     
     def get(self, url) -> dict:
-        response = requests.get(
+        response = self.http_client.get(
             url=url, 
             headers=self.__headers__
         )
