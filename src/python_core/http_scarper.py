@@ -4,11 +4,12 @@ from src.etl_process.python_mongo_tools import MongoInterfaces
 from concurrent.futures import ThreadPoolExecutor
 from functools import partial
 from logging import warn
-
+import time
 class HttpScraper:
-    def __init__(self, db_name) -> None:
+    def __init__(self, db_name, delay = 0) -> None:
         self.db_name = db_name
         self.db = MongoInterfaces(db_name)
+        self.delay = delay
 
     def logger(self, index, job, already):
         return 
@@ -114,7 +115,7 @@ class HttpScraper:
                 if len(jobs) == 0 or page == n_page:
                     break
                 
-                if parallel:
+                if parallel and self.delay == 0:
                     print(parallel)
                     list(exe.map(
                         self.__save__,
@@ -123,6 +124,7 @@ class HttpScraper:
                     ))
                 else:
                     for i, j in zip(range(index, index + len(jobs)), jobs):
+                        time.sleep(self.delay)
                         self.__save__(i, j) 
 
                 page += 1
