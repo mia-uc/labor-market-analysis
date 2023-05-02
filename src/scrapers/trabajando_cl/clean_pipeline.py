@@ -90,7 +90,11 @@ class WorkingCLTransformer:
     
     @property
     def published_at(self):
-        return self.job['fechaPublicacionFormatoIngles']
+        try:
+            return self.job['fechaPublicacionFormatoIngles']
+        except Exception as e:
+            print(self.job)
+            raise e
 
     @property
     def hiring_organization(self):
