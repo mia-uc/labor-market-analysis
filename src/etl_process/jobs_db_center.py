@@ -59,6 +59,6 @@ class JobsDBCenter:
         }
 
         if self.db.exists(id=_id, origin = origin):
-            self.update(body, id= _id, origin= origin)
+            self.db.update(body, id= _id, origin= origin)
         else:
             self.db.insert(body)
