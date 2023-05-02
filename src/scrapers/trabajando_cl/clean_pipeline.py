@@ -173,6 +173,7 @@ class WorkingCLCleanPipeline:
         aggregate = []
 
         _match = {
+            'fechaPublicacionFormatoIngles' : {'$exists': True},
             '$or': [
                 {
                     'nombreArea': { # If body is defined meats the job was fully scrapped
