@@ -5,8 +5,8 @@ import json
 import base64
 
 class LaborumScraper(HttpScraper):
-    def __init__(self) -> None:
-        super().__init__('Laborum')
+    def __init__(self, delay = 0) -> None:
+        super().__init__('Laborum', delay= delay)
 
         self.session = requests.Session()
         self.session.get('https://www.laborum.cl', headers=self.__headers__)
