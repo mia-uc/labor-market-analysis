@@ -1,0 +1,323 @@
+name
+1c enterprise
+abap
+actionscript
+ada
+adblock filter list
+agda
+ags script
+alloy
+ampl
+antlr
+apacheconf
+apex
+api blueprint
+apl
+applescript
+arc
+arduino
+asp
+assembly
+astro
+ats
+augeas
+autohotkey
+autoit
+awk
+batchfile
+bicep
+bison
+bitbake
+blade
+blitzbasic
+bluespec
+boo
+brainfuck
+brightscript
+bro
+c
+c#
+c++
+cartocss
+ceylon
+chapel
+clean
+click
+clojure
+cmake
+cobol
+codeql
+coffeescript
+coldfusion
+common lisp
+common workflow language
+component pascal
+coq
+crystal
+css
+cucumber
+cuda
+cweb
+cython
+d
+dart
+dcpu-16 asm
+delphi
+diff
+digital command language
+dm
+dockerfile
+dot
+dtrace
+dylan
+eagle
+ecl
+eiffel
+ejs
+elixir
+elm
+emacs lisp
+emberscript
+erlang
+f#
+f*
+factor
+fancy
+flux
+forth
+fortran
+freemarker
+frege
+g-code
+game maker language
+gap
+gcc machine description
+gdscript
+genshi
+gettext catalog
+gherkin
+glsl
+gnuplot
+go
+gosu
+groff
+groovy
+hack
+haml
+handlebars
+haskell
+haxe
+hcl
+hlsl
+hoon
+html
+hy
+idl
+idris
+igor pro
+inform 7
+inno setup
+io
+isabelle
+j
+java
+javascript
+jetbrains mps
+jinja
+json
+jsoniq
+jsonnet
+julia
+jupyter notebook
+kicad
+kicad layout
+kotlin
+krl
+labview
+lasso
+lean
+less
+lex
+lilypond
+limbo
+liquid
+livescript
+llvm
+logos
+logtalk
+lookml
+loomscript
+lsl
+lua
+m
+m4
+makefile
+mako
+markdown
+mask
+mathematica
+matlab
+max
+maxscript
+mercury
+meson
+mirah
+mirc script
+mlir
+modelica
+modula-2
+monkey
+moonscript
+mql4
+mql5
+mustache
+nasal
+nasl
+ncl
+nemerle
+nesc
+netlogo
+nextflow
+nginx
+nim
+nimrod
+nix
+nsis
+nunjucks
+objective-c
+objective-c++
+objective-j
+ocaml
+ooc
+opa
+open policy agent
+openedge abl
+openscad
+oz
+p4
+pan
+papyrus
+pascal
+pawn
+perl
+perl 6
+perl6
+php
+picolisp
+piglatin
+pike
+plpgsql
+plsql
+pony
+postscript
+pov-ray sdl
+powerbuilder
+powershell
+processing
+prolog
+propeller spin
+protocol buffer
+pug
+puppet
+pure data
+purebasic
+purescript
+python
+q
+qmake
+qml
+r
+racket
+ragel
+ragel in ruby host
+raku
+raml
+rascal
+realbasic
+reason
+rebol
+red
+ren'py
+rich text format
+ring
+riot
+robotframework
+roff
+rouge
+rpc
+ruby
+rust
+saltstack
+sas
+sass
+scala
+scheme
+scilab
+scss
+sed
+shaderlab
+shell
+shen
+slash
+slim
+smali
+smalltalk
+smarty
+smt
+solidity
+sourcepawn
+sqf
+sql
+sqlpl
+squirrel
+stan
+standard ml
+starlark
+stata
+stylus
+supercollider
+svelte
+swift
+swig
+systemverilog
+tcl
+terra
+tex
+thrift
+tsql
+twig
+typescript
+uno
+unrealscript
+urweb
+vala
+vba
+vcl
+verilog
+vhdl
+vim script
+vim snippet
+viml
+visual basic
+visual basic .net
+vue
+web ontology language
+webassembly
+wisp
+x10
+xbase
+xc
+xml
+xojo
+xproc
+xquery
+xs
+xslt
+xtend
+yacc
+yaml
+yara
+yasnippet
+zap
+zenscript
+zephir
