@@ -2,8 +2,8 @@ from src.etl_process.python_mongo_tools import MongoInterfaces
 from datetime import datetime
 
 class JobsDBCenter:
-    def __init__(self) -> None:
-        self.db = MongoInterfaces('CleanITJobs')
+    def __init__(self, name = 'CleanITJobs') -> None:
+        self.db = MongoInterfaces(name)
     
     def migrate(
         self,
