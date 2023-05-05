@@ -1,6 +1,7 @@
 from src.etl_process.python_mongo_tools import MongoInterfaces
 from src.etl_process.jobs_db_center import JobsDBCenter
 
+
 class GetOnBoardTransformer:
     def __init__(self, job) -> None:
         self.job = job
@@ -11,13 +12,12 @@ class GetOnBoardTransformer:
             return self.job[__name]
         except KeyError:
             return None
-        
 
     @property
     def contract(self):
         try:
             if self.job['modality'] == 'Full time':
-                return 'full-time'    
+                return 'full-time'
             if self.job['modality'] == 'Part time':
                 return 'part-time'
             if self.job['modality'] == 'Freelance':
@@ -26,7 +26,7 @@ class GetOnBoardTransformer:
                 return 'internship'
         except KeyError:
             pass
-        
+
         return None
 
     @property
@@ -34,14 +34,14 @@ class GetOnBoardTransformer:
         # 'fully_remote', 'hybrid', 'remote_local', 'no_remote', 'temporarily_remote'
         try:
             if self.job['remote_modality'] == 'fully_remote':
-                return 'remote'    
+                return 'remote'
             if self.job['remote_modality'] == 'no_remote':
                 return 'on-place'
 
             return 'hybrid'
         except KeyError:
             return None
-        
+
     @property
     def seniority(self):
         # 'Expert','Senior', 'Junior', 'Semi Senior', 'Sin experiencia'
@@ -50,12 +50,11 @@ class GetOnBoardTransformer:
                 return 'without-experience'
             if self.job['seniority'] == 'Semi Senior':
                 return 'semi-senior'
-                        
+
             return self.job['seniority'].lower()
         except:
             return None
 
-        
     @property
     def hiring_organization(self):
         try:
@@ -75,8 +74,9 @@ class GetOnBoardTransformer:
 
         return None
 
+
 class GetOnBoardCleanPipeline:
-    def __init__(self, force = False) -> None:
+    def __init__(self, force=False) -> None:
         self.db = MongoInterfaces('GetOnBoard')
         self.force = force
 
@@ -84,25 +84,25 @@ class GetOnBoardCleanPipeline:
         aggregate = []
 
         _match = {
-            'body': { # If body is defined meats the job was fully scrapped
+            'body': {  # If body is defined meats the job was fully scrapped
                 '$exists': True
             },
-            'job_category' : { # It only matter if is a jobs of IT
+            'job_category': {  # It only matter if is a jobs of IT
                 # ITs
-                # Programming 
-                # Hardware / Electronics 
-                # SysAdmin / DevOps / QA 
+                # Programming
+                # Hardware / Electronics
+                # SysAdmin / DevOps / QA
                 # Data Science / Analytics
-                # Mobile Development 
+                # Mobile Development
                 # Sales aprox to Data Science
                 # Cybersecurity
-                # 
-                # Related with ITs 
-                # Design / UX => Graphic Design  
-                # Operations / Admin => Team Leander  
-                # Product, Innovation & Agile => Scrum Master 
+                #
+                # Related with ITs
+                # Design / UX => Graphic Design
+                # Operations / Admin => Team Leander
+                # Product, Innovation & Agile => Scrum Master
                 # Content, Advertising & Media == Digital Marketing'
-                # Customer Support 
+                # Customer Support
                 # People & HR
 
                 '$in': [
@@ -123,33 +123,37 @@ class GetOnBoardCleanPipeline:
 
         aggregate.append({'$match': _match})
         return self.db.doc.aggregate(aggregate)
-    
+
     def run(self, centered_db: JobsDBCenter):
 
-        for i, job in enumerate(self.filtered_data()):
-            transformed_job = GetOnBoardTransformer(job)
+        for job in self.filtered_data():
+            self.migrate(job, centered_db)
 
-            centered_db.migrate(
-                _id = transformed_job.id,
-                name = transformed_job.title,
-                min_salary = transformed_job.min_salary,
-                max_salary = transformed_job.max_salary,
-                seniority = transformed_job.seniority,
-                work_modality = transformed_job.modality,
-                contract_type = transformed_job.contract,
-                published_at = transformed_job.published_at,
-                hiring_organization = transformed_job.hiring_organization,
-                description = transformed_job.body,
-                country = transformed_job.country,
-                city = transformed_job.city,
-                origin = 'GetOnBoard',
-                currency = 'usd'
-            )
+    def migrate(self, job, centered_db, **info):
+        transformed_job = GetOnBoardTransformer(job)
 
-            print(f"..... Cleaning the job #{i} => {transformed_job.id} => {transformed_job.title}")
+        centered_db.migrate(
+            _id=transformed_job.id,
+            name=transformed_job.title,
+            min_salary=transformed_job.min_salary,
+            max_salary=transformed_job.max_salary,
+            seniority=transformed_job.seniority,
+            work_modality=transformed_job.modality,
+            contract_type=transformed_job.contract,
+            published_at=transformed_job.published_at,
+            hiring_organization=transformed_job.hiring_organization,
+            description=transformed_job.body,
+            country=transformed_job.country,
+            city=transformed_job.city,
+            origin='GetOnBoard',
+            currency='usd',
+            **info,
+        )
 
-            self.db.update({'already_fetch': True}, **{'id': job['id'], 'url': job['url']})
-    
+        print(
+            f"..... Cleaning the job {transformed_job.id} => {transformed_job.title}")
 
-
-
+        self.db.update(
+            {'already_fetch': True},
+            **{'id': job['id'], 'url': job['url']}
+        )
