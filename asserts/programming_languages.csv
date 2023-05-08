@@ -135,6 +135,7 @@ Gettext Catalog
 Gherkin
 Gnuplot
 Go
+Golang
 Gosu
 Grace
 GraphTalk
@@ -158,6 +159,7 @@ Inno Setup
 Io
 Isabelle
 J
+JS
 JSON
 JSONiq
 Java
@@ -242,6 +244,7 @@ Pascal
 Pawn
 Perl
 Perl 6
+Perl6
 PicoLisp
 PigLatin
 Pike
@@ -315,6 +318,7 @@ SuperCollider
 Svelte
 Swift
 SystemVerilog
+TS
 TSQL
 Tcl
 TeX
@@ -357,6 +361,7 @@ ZenScript
 Zephir
 hoon
 mIRC Script
+name
 nesC
 ooc
 q
