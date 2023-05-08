@@ -24,8 +24,8 @@ class MongoInterfaces:
     def exists(self, **question):
         return self.doc.find_one(question)
 
-    def all(self, limit=0, skip=0, **condition):
-        return self.doc.find(condition, limit=limit, skip=skip)
+    def all(self, limit=0, skip=0, sort=None, **condition):
+        return self.doc.find(condition, limit=limit, skip=skip, sort=sort)
 
     def update(self, body, **keys):
         return self.doc.update_many(keys, {'$set': body})
