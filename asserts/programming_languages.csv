@@ -1,409 +1,365 @@
 name
-1c enterprise
-abap
-actionscript
-ada
-adblock filter list
-agda
-ags script
-alloy
-ampl
-antlr
-apacheconf
-apex
-api blueprint
-apl
-applescript
-arc
-arduino
-asp
-assembly
-astro
-ats
-augeas
-autohotkey
-autoit
-awk
-batchfile
-bicep
-bison
-bitbake
-blade
-blitzbasic
-bluespec
-boo
-brainfuck
-brightscript
-bro
-c
-c#
-c++
-cartocss
-ceylon
-chapel
-clean
-click
-clojure
-cmake
-cobol
-codeql
-coffeescript
-coldfusion
-common lisp
-common workflow language
-component pascal
-coq
-crystal
-css
-cucumber
-cuda
-cweb
-cython
-d
-dart
-dcpu-16 asm
-delphi
-diff
-digital command language
-dm
-dockerfile
-dot
-dtrace
-dylan
-eagle
-ecl
-eiffel
-ejs
-elixir
-elm
-emacs lisp
-emberscript
-erlang
-f#
-f*
-factor
-fancy
-flux
-forth
-fortran
-freemarker
-frege
-g-code
-game maker language
-gap
-gcc machine description
-gdscript
-genshi
-gettext catalog
-gherkin
-glsl
-gnuplot
-go
-gosu
-groff
-groovy
-hack
-haml
-handlebars
-haskell
-haxe
-hcl
-hlsl
-hoon
-html
-hy
-idl
-idris
-igor pro
-inform 7
-inno setup
-io
-isabelle
-j
-java
-javascript
-jetbrains mps
-jinja
-json
-jsoniq
-jsonnet
-julia
-jupyter notebook
-kicad
-kicad layout
-kotlin
-krl
-labview
-lasso
-lean
-less
-lex
-lilypond
-limbo
-liquid
-livescript
-llvm
-logos
-logtalk
-lookml
-loomscript
-lsl
-lua
-m
-m4
-makefile
-mako
-markdown
-mask
-mathematica
-matlab
-max
-maxscript
-mercury
-meson
-mirah
-mirc script
-mlir
-modelica
-modula-2
-monkey
-moonscript
-mql4
-mql5
-mustache
-nasal
-nasl
-ncl
-nemerle
-nesc
-netlogo
-nextflow
-nginx
-nim
-nimrod
-nix
-nsis
-nunjucks
-objective-c
-objective-c++
-objective-j
-ocaml
-ooc
-opa
-open policy agent
-openedge abl
-openscad
-oz
-p4
-pan
-papyrus
-pascal
-pawn
-perl
-perl 6
-perl6
-php
-picolisp
-piglatin
-pike
-plpgsql
-plsql
-pony
-postscript
-pov-ray sdl
-powerbuilder
-powershell
-processing
-prolog
-propeller spin
-protocol buffer
-pug
-puppet
-pure data
-purebasic
-purescript
-python
-q
-qmake
-qml
-r
-racket
-ragel
-ragel in ruby host
-raku
-raml
-rascal
-realbasic
-reason
-rebol
-red
-ren'py
-rich text format
-ring
-riot
-robotframework
-roff
-rouge
-rpc
-ruby
-rust
-saltstack
-sas
-sass
-scala
-scheme
-scilab
-scss
-sed
-shaderlab
-shell
-shen
-slash
-slim
-smali
-smalltalk
-smarty
-smt
-solidity
-sourcepawn
-sqf
-sql
-sqlpl
-squirrel
-stan
-standard ml
-starlark
-stata
-stylus
-supercollider
-svelte
-swift
-swig
-systemverilog
-tcl
-terra
-tex
-thrift
-tsql
-twig
-typescript
-uno
-unrealscript
-urweb
-vala
-vba
-vcl
-verilog
-vhdl
-vim script
-vim snippet
-viml
-visual basic
-visual basic .net
-vue
-web ontology language
-webassembly
-wisp
-x10
-xbase
-xc
-xml
-xojo
-xproc
-xquery
-xs
-xslt
-xtend
-yacc
-yaml
-yara
-yasnippet
-zap
-zenscript
-zephir
-Abydos
-ATS
-Bacon
-Ballerina
-Befunge
-BitTorrent
-Blue
-Boomerang
-Ceylon
-Chef
-Crystal
-Dag
-Dylan
-Elixir
-Elm
-Factor
-FlatAssembler
-Frink
-Genie
-Grace
-Groovy
-Io
-JASS
-Julia
-Kotlin
-Lua
-Nim
-OCaml
-Pike
-Prolog
-PureScript
-Racket
-Rebol
-Rust
-Scala
-Shen
-Swift
-TypeScript
-Postiats
-Ada Lovelace
-Agoric
-Algol 
-Alisa 
-Amba 
-Amiga E
+1C Enterprise
+ABAP
+AGS Script
+AMPL
+ANTLR
+API Blueprint
+APL
 ARexx
-AutoLISP 
+ASP
+ATS
+ActionScript
+Ada
+Ada Lovelace
+Adblock Filter List
+Agda
+Agoric
+Algol
+Alisa
+Alloy
+Amba
+Amiga E
+ApacheConf
+Apex
+AppleScript
+Arc
+Arduino
+Assembly
+Astro
+Augeas
+AutoHotkey
+AutoIt
+AutoLISP
+Awk
 BASIC
-Batch script
 BCPL
-Beflex 
+Batch script
+Batchfile
+Beflex
+Bicep
+Bison
+BitBake
+Blade
+BlitzBasic
+Bluespec
 Boo
-Brainfuck 
+Brainfuck
+Brightscript
 Bro
+C
+C#
+C++
 C-INTERCAL
 C-shell
+CMake
+COBOL
+CSS
+CWeb
+CartoCSS
+Ceylon
+Chapel
 ChucK
 Clean
+Click
 Clipper
-COBOL
+Clojure
+CodeQL
 CoffeeScript
+ColdFusion
 Comal
+Common Lisp
+Common Workflow Language
+Component Pascal
+Coq
+Crystal
+Cucumber
+Cuda
 Curry
+Cython
+D
+DCPU-16 ASM
+DIGITAL Command Language
+DM
+DOT
+DTrace
+Dart
 Datalog
+Delphi
+Diff
+Dockerfile
 Dylan
-ECMAScript 
+ECL
+ECMAScript
+EJS
 ELM-VE
+Eagle
+Eiffel
+Elixir
+Elm
+Emacs Lisp
+EmberScript
+Erlang
 Esperanto
+F#
+F*
+FL
+FLUX
+FOCAL
+FORTRAN
+FP
+Factor
 Falcon
 Fancy
-Ferite 
+Ferite
 Fjölnir
-FL
-FOCAL
 Forth
-FP
+Fortran
+FreeMarker
+Frege
 Fril
-Gambas
-GameMonkey Script
+G-code
+GAP
+GCC Machine Description
 GDL
+GDScript
+GLSL
 GML
 GNU E
-Grace 
-GraphTalk
 GTK+
+Gambas
+Game Maker Language
+GameMonkey Script
+Genshi
+Gettext Catalog
+Gherkin
+Gnuplot
+Go
+Gosu
+Grace
+GraphTalk
+Groff
+Groovy
 Guru
+HCL
+HLSL
+HTML
+Hack
+Haml
+Handlebars
+Haskell
+Haxe
+Hy
+IDL
+IGOR Pro
+Idris
+Inform 7
+Inno Setup
+Io
+Isabelle
+J
+JSON
+JSONiq
+Java
+JavaScript
+JetBrains MPS
+Jinja
+Jsonnet
+Julia
+Jupyter Notebook
+KRL
+KiCad
+KiCad Layout
+Kotlin
+LLVM
+LSL
+LabVIEW
+Lasso
+Lean
+Less
+Lex
+LilyPond
+Limbo
+Liquid
+LiveScript
+Logos
+Logtalk
+LookML
+LoomScript
+Lua
+M
+M4
+MATLAB
+MAXScript
+MLIR
+MQL4
+MQL5
+Makefile
+Mako
+Markdown
+Mask
+Mathematica
+Matlab
+Max
+Mercury
+Meson
+Mirah
+Modelica
+Modula-2
+Monkey
+MoonScript
+Mustache
+NASL
+NCL
+NSIS
+Nasal
+Nemerle
+NetLogo
+Nextflow
+Nginx
+Nim
+Nimrod
+Nix
+Nunjucks
+OCaml
+Objective-C
+Objective-C++
+Objective-J
+Opa
+Open Policy Agent
+OpenEdge ABL
+OpenSCAD
+Oz
+P4
+PAWN
+PHP
+PLSQL
+PLpgSQL
+POV-Ray SDL
+Pan
+Papyrus
+Pascal
+Pawn
+Perl
+Perl 6
+PicoLisp
+PigLatin
+Pike
+Pony
+PostScript
+Postiats
+PowerBuilder
+PowerShell
+Processing
+Prolog
+Propeller Spin
+Protocol Buffer
+Pug
+Puppet
+Pure Data
+PureBasic
+PureScript
+Python
+QML
+QMake
+R
+RAML
+REALbasic
+RPC
+Racket
+Ragel
+Ragel in Ruby Host
+Raku
+Rascal
+Reason
+Rebol
+Red
+Ren'Py
+Rich Text Format
+Ring
+Riot
+RobotFramework
+Roff
+Rouge
+Ruby
+Rust
+SAS
+SCSS
+SMT
+SQF
+SQL
+SQLPL
+SWIG
+SaltStack
+Sass
+Scala
+Scheme
+Scilab
+ShaderLab
+Shell
+Shen
+Slash
+Slim
+Smali
+Smalltalk
+Smarty
+Solidity
+SourcePawn
+Squirrel
+Stan
+Standard ML
+Starlark
+Stata
+Stylus
+SuperCollider
+Svelte
+Swift
+SystemVerilog
+TSQL
+Tcl
+TeX
+Terra
+Thrift
+Twig
+TypeScript
+Uno
+UnrealScript
+UrWeb
+VBA
+VCL
+VHDL
+Vala
+Verilog
+Vim Script
+Vim Snippet
+Vim script
+VimL
+Visual Basic
+Visual Basic .NET
+Vue
+Web Ontology Language
+WebAssembly
+X10
+XC
+XML
+XProc
+XQuery
+XS
+XSLT
+Xojo
+Xtend
+YAML
+YARA
+YASnippet
+Yacc
+ZAP
+ZenScript
+Zephir
+hoon
+mIRC Script
+nesC
+ooc
+q
+sed
+wisp
+xBase
