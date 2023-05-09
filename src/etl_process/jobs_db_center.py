@@ -12,7 +12,7 @@ class JobsDBCenter:
         self.exe = ThreadPoolExecutor()
 
         self.lp_detector = build_language_programming_detector()
-        self.skills_detector = build_skills_detector()
+        self.skill_detector = build_skills_detector()
 
     def migrate(
         self,
@@ -115,6 +115,7 @@ class JobsDBCenter:
 # import os
 
 # os.environ['MONGO_CONN_STRING'] = 'mongodb+srv://DataScienceTeam:rNA6xe4OU7cvv8it@jobsdatalake.goyvrjl.mongodb.net/?retryWrites=true&w=majority'
+# os.environ['MONGO_DB'] = 'jobs'
 # db = MongoInterfaces("CleanITJobs")
 # center = JobsDBCenter()
 # for i, job in enumerate(db.all(skills={'$exists': False}, sort=[('name', pymongo.DESCENDING)])):
