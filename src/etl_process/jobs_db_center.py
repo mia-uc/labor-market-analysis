@@ -1,10 +1,18 @@
+
 from src.etl_process.python_mongo_tools import MongoInterfaces
 from datetime import datetime
+
+from concurrent.futures import ThreadPoolExecutor
+from .text_entities_detection import build_language_programming_detector, build_skills_detector
 
 
 class JobsDBCenter:
     def __init__(self, name='CleanITJobs') -> None:
         self.db = MongoInterfaces(name)
+        self.exe = ThreadPoolExecutor()
+
+        self.lp_detector = build_language_programming_detector()
+        self.skills_detector = build_skills_detector()
 
     def migrate(
         self,
@@ -75,3 +83,40 @@ class JobsDBCenter:
             self.db.update(body, id=_id, origin=origin)
         else:
             self.db.insert(body)
+
+    def body_update(self, job):
+
+        new_info = {}
+
+        # titles = job_detector(job['name'])
+        # if titles:
+        #     new_info['job_type'] = titles
+        # print(f"\t{titles}")
+        text = f"{job['name']}\n{job['description']}"
+        new_info['lps'] = self.lp_detector(text, self.exe)
+
+        new_info['skills'] = self.skill_detector(text, self.exe)
+
+        return new_info
+        # self.db.update(new_info, id=job['id'], origin=job['origin'])
+
+
+# !rm -r labor-market-analysis
+# !git clone https://github.com/mia-uc/labor-market-analysis.git
+# %cd labor-market-analysis
+
+# !pip install -r requirements.txt
+# !pip install pandas fuzzywuzzy
+
+
+# from src.etl_process.python_mongo_tools import MongoInterfaces
+# from src.etl_process.jobs_db_center import JobsDBCenter
+# import pymongo
+# import os
+
+# os.environ['MONGO_CONN_STRING'] = 'mongodb+srv://DataScienceTeam:rNA6xe4OU7cvv8it@jobsdatalake.goyvrjl.mongodb.net/?retryWrites=true&w=majority'
+# db = MongoInterfaces("CleanITJobs")
+# center = JobsDBCenter()
+# for i, job in enumerate(db.all(skills={'$exists': False}, sort=[('name', pymongo.DESCENDING)])):
+#     new_info = center.body_update(job)
+#     db.update(new_info, id=job['id'], origin=job['origin'])
