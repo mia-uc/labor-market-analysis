@@ -9,6 +9,9 @@ typer = {extras = ["all"], version = "*"}
 requests = "*"
 pymongo = "*"
 python-dotenv = "*"
+pandas = "*"
+fuzzywuzzy = "*"
+streamlit = "*"
 
 [dev-packages]
 python-dotenv = "*"

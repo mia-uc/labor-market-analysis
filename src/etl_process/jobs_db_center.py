@@ -79,6 +79,8 @@ class JobsDBCenter:
             'jobs_category': jobs_category
         }
 
+        body |= self.body_update(body)
+
         if self.db.exists(id=_id, origin=origin):
             self.db.update(body, id=_id, origin=origin)
         else:
@@ -106,7 +108,7 @@ class JobsDBCenter:
 # %cd labor-market-analysis
 
 # !pip install -r requirements.txt
-# !pip install pandas fuzzywuzzy
+# !pip install pandas fuzzywuzzy python-Levenshtein
 
 
 # from src.etl_process.python_mongo_tools import MongoInterfaces
