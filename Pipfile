@@ -12,6 +12,7 @@ python-dotenv = "*"
 pandas = "*"
 fuzzywuzzy = "*"
 streamlit = "*"
+python-levenshtein = "*"
 
 [dev-packages]
 python-dotenv = "*"
