@@ -1,6 +1,7 @@
 import pandas as pd
 import re
 from fuzzywuzzy import process
+from functools import lru_cache
 
 
 def build_regex(tags: list[str], dividers=[r'\s', r'\.', r'\-', r"\'"], companies=[]):
@@ -62,6 +63,7 @@ def build_language_programming_detector():
 
     lps_keys = list(theasuarus.keys())
 
+    @lru_cache
     def lp_mapper(title):
         results = process.extractBests(title, lps_keys, limit=1)
         lp, score = results[0]
@@ -87,6 +89,7 @@ def build_skills_detector():
 
     # skills_theasuarus = dict((x,x) for x in skills)
 
+    @lru_cache
     def skill_mapper(title):
         results = process.extractBests(title, skills, limit=1)
         skill, score = results[0]
