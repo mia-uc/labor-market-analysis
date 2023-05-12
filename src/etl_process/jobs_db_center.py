@@ -3,16 +3,22 @@ from src.etl_process.python_mongo_tools import MongoInterfaces
 from datetime import datetime
 
 from concurrent.futures import ThreadPoolExecutor
-from .text_entities_detection import build_language_programming_detector, build_skills_detector
+from .text_entities_detection import build_language_programming_detector, build_skills_detector, llm_predict
+import openai
+import os
 
 
 class JobsDBCenter:
-    def __init__(self, name='CleanITJobs') -> None:
+    def __init__(self, name='CleanITJobs', check_llm=False) -> None:
         self.db = MongoInterfaces(name)
         self.exe = ThreadPoolExecutor()
 
         self.lp_detector = build_language_programming_detector()
         self.skill_detector = build_skills_detector()
+
+        self.check_llm = check_llm
+        if self.check_llm:
+            openai.api_key = os.getenv("OPEN_AI_API_KEY")
 
     def migrate(
         self,
@@ -81,6 +87,9 @@ class JobsDBCenter:
 
         body |= self.body_update(body)
 
+        if self.check_llm:
+            body |= self.llm_analyze(body)
+
         if self.db.exists(id=_id, origin=origin):
             self.db.update(body, id=_id, origin=origin)
         else:
@@ -101,6 +110,13 @@ class JobsDBCenter:
 
         return new_info
         # self.db.update(new_info, id=job['id'], origin=job['origin'])
+
+    def llm_analyze(self, job):
+        s = '0-'
+        for _ in range(5):
+            s += llm_predict(job['description'], s)
+
+        return {'openai-text': s}
 
 
 # !rm -r labor-market-analysis

@@ -16,6 +16,8 @@ python-levenshtein = "*"
 
 [dev-packages]
 python-dotenv = "*"
+pytest = "*"
+openai = "*"
 
 [requires]
 python_version = "3.10"
