@@ -117,7 +117,7 @@ class JobsDBCenter:
             s += llm_predict(job['description'], s)
             s += '\n'
 
-        return {'openai-text': s}
+        return {'openai_text': s}
 
 
 # !rm -r labor-market-analysis
@@ -133,10 +133,34 @@ class JobsDBCenter:
 # import pymongo
 # import os
 
-# os.environ['MONGO_CONN_STRING'] = 'mongodb+srv://DataScienceTeam:rNA6xe4OU7cvv8it@jobsdatalake.goyvrjl.mongodb.net/?retryWrites=true&w=majority'
+# os.environ['MONGO_CONN_STRING'] = '.....'
 # os.environ['MONGO_DB'] = 'jobs'
 # db = MongoInterfaces("CleanITJobs")
 # center = JobsDBCenter()
 # for i, job in enumerate(db.all(skills={'$exists': False}, sort=[('name', pymongo.DESCENDING)])):
 #     new_info = center.body_update(job)
+#     db.update(new_info, id=job['id'], origin=job['origin'])
+
+
+######################################################################################################
+
+# !rm -r labor-market-analysis
+# !git clone https://github.com/mia-uc/labor-market-analysis.git
+# %cd labor-market-analysis
+# !pip install -r requirements.txt
+
+
+# from src.etl_process.python_mongo_tools import MongoInterfaces
+# from src.etl_process.jobs_db_center import JobsDBCenter
+# import pymongo
+# import os
+# import openai
+
+# os.environ['MONGO_CONN_STRING'] = '....'
+# os.environ['MONGO_DB'] = 'jobs'
+#
+# db = MongoInterfaces("CleanITJobs")
+# center = JobsDBCenter()
+# for i, job in enumerate(db.all(openai_text={'$exists': False}, sort=[('name', pymongo.DESCENDING)])):
+#     new_info = center.llm_analyze(job)
 #     db.update(new_info, id=job['id'], origin=job['origin'])
