@@ -263,8 +263,8 @@ def build_skills_detector():
 
 LLM_PROMPT = """Analyze each of the job offers below and list each of the skills mentioned in them. \
 In the list should appear each of the skills as summarized as possible, use aliases, acronyms, synonyms, etc. \
-Ignores the benefits of the job and the conditions of the job, such as hours, modality, salary or type of contract. \
-Focus only on the skills and requirements needed to get the job.
+Pay more attention on the skills and requirements needed to get the job. \
+And classify Each element in the list in skill, programming language, benefits, experience, availability, modality, academic level or industry.
 
 Offer Text: Empresa requiere personal para su área de desarrollo, \
 Título Técnico o Universitario de Ingeniería Ejecución Informática Análisis de Sistemas o carrera afín  \

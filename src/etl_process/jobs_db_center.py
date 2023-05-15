@@ -115,6 +115,7 @@ class JobsDBCenter:
         s = '0-'
         for _ in range(5):
             s += llm_predict(job['description'], s)
+            s += '\n'
 
         return {'openai-text': s}
 
