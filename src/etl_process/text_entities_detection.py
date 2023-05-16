@@ -300,6 +300,9 @@ def deep_split(text):
 
 
 def post_openai(prompt):
+    if 4097 <= len(prompt):
+        return ''
+
     response = openai.Completion.create(
         engine='text-davinci-003',
         prompt=prompt,
