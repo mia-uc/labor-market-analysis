@@ -158,7 +158,8 @@ class WorkingCLTransformer:
             if currency == 'Pesos Chilenos':
                 return 'clp'
 
-            raise Exception(currency)
+            if currency:
+                raise Exception(currency)
         except KeyError:
             return None
 
