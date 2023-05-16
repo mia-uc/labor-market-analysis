@@ -293,18 +293,33 @@ Skills:
 {skills}"""
 
 
-def llm_predict(offer, skills):
-    p = LLM_PROMPT.format(offer=offer, skills=skills)
-    if (4097 - len(p)) <= 0:
-        return ''
+def deep_split(text):
+    if 3000 >= len(text):
+        return [text]
+    return deep_split(text[:len(text)/2]) + deep_split(text[len(text)/2:])
 
+
+def post_openai(prompt):
     response = openai.Completion.create(
         engine='text-davinci-003',
-        prompt=p,
-        max_tokens=4097 - len(p),
+        prompt=prompt,
+        max_tokens=4097 - len(prompt),
     )
 
     return response.choices[0].text.strip()
+
+
+def llm_predict(offer, skills):
+    p = LLM_PROMPT.format(offer=offer, skills=skills)
+    if 3000 >= len(p):
+        return post_openai(p)
+
+    for sub_offer in deep_split(offer):
+        p = LLM_PROMPT.format(offer=sub_offer, skills=skills)
+        skills += post_openai(p)
+        skills += '\n'
+
+    return skills
 
 
 if __name__ == '__main__':

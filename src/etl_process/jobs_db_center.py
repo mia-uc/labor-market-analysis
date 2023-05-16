@@ -161,6 +161,11 @@ class JobsDBCenter:
 #
 # db = MongoInterfaces("CleanITJobs")
 # center = JobsDBCenter()
-# for i, job in enumerate(db.all(openai_text={'$exists': False}, sort=[('name', pymongo.DESCENDING)])):
-#     new_info = center.llm_analyze(job)
-#     db.update(new_info, id=job['id'], origin=job['origin'])
+# exe = ThreadPoolExecutor()
+
+# def f(job):
+#   new_info = center.llm_analyze(job)
+#   db.update(new_info, id=job['id'], origin=job['origin'])
+#   print(job['id'], job['name'])
+
+# list(exe.map(f, db.all(openai_text={'$exists': False}, sort=[('name', pymongo.DESCENDING)])))
