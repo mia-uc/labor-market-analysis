@@ -6,10 +6,11 @@ from concurrent.futures import ThreadPoolExecutor
 from .text_entities_detection import build_language_programming_detector, build_skills_detector, llm_predict
 import openai
 import os
+from .kind_of_job_detection import detect_kind_of_job
 
 
 class JobsDBCenter:
-    def __init__(self, name='CleanITJobs', check_llm=False) -> None:
+    def __init__(self, name='CleanITJobs', check_llm=False, exp_body_analyze=False) -> None:
         self.db = MongoInterfaces(name)
         self.exe = ThreadPoolExecutor()
 
@@ -17,6 +18,8 @@ class JobsDBCenter:
         self.skill_detector = build_skills_detector()
 
         self.check_llm = check_llm
+        self.exp_body_analyze = exp_body_analyze
+
         if self.check_llm:
             openai.api_key = os.getenv("OPEN_AI_API_KEY")
 
@@ -63,9 +66,8 @@ class JobsDBCenter:
         assert not city or type(city) == str
 
         assert type(programming_languages) == list
-        assert not jobs_category or jobs_category in [
-            'back-end', 'front-end', 'full-stack']
 
+        kinds, sectors = detect_kind_of_job(name)
         body = {
             'id': _id,
             'name': name,
@@ -82,10 +84,12 @@ class JobsDBCenter:
             'country': country,
             'city': city,
             'programming_languages': programming_languages,
-            'jobs_category': jobs_category
+            'job_kind': kinds,
+            'job_sector': list(sectors)
         }
 
-        body |= self.body_update(body)
+        if self.exp_body_analyze:
+            body |= self.body_update(body)
 
         if self.check_llm:
             body |= self.llm_analyze(body)

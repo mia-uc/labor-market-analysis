@@ -726,5 +726,5 @@ class WorkingCLCleanPipeline:
         print(
             f"..... Cleaning the job => {transformed_job.idOferta} => {transformed_job.cargo}")
 
-        self.db.update({'already_fetch': True}, **
-                       {'id': transformed_job.idOferta})
+        self.db.update({'already_fetch': True},
+                       idOferta=transformed_job.idOferta)
