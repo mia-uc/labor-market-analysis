@@ -296,7 +296,7 @@ Skills:
 def deep_split(text):
     if 3000 >= len(text):
         return [text]
-    return deep_split(text[:len(text)/2]) + deep_split(text[len(text)/2:])
+    return deep_split(text[:int(len(text)/2)]) + deep_split(text[int(len(text)/2):])
 
 
 def post_openai(prompt):
