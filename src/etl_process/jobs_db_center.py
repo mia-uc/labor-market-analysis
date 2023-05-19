@@ -10,7 +10,7 @@ from .kind_of_job_detection import detect_kind_of_job
 
 
 class JobsDBCenter:
-    def __init__(self, name='CleanITJobs', check_llm=False, exp_body_analyze=False) -> None:
+    def __init__(self, name='CleanITJobs', check_llm=True, exp_body_analyze=False) -> None:
         self.db = MongoInterfaces(name)
         self.exe = ThreadPoolExecutor()
 
