@@ -5,47 +5,48 @@ from concurrent.futures import ThreadPoolExecutor
 from functools import partial
 from logging import warn
 import time
+
+
 class HttpScraper:
-    def __init__(self, db_name, delay = 0) -> None:
+    def __init__(self, db_name, delay=0) -> None:
         self.db_name = db_name
         self.db = MongoInterfaces(db_name)
         self.delay = delay
 
     def logger(self, index, job, already):
-        return 
-    
+        return
+
     #############################################
-    #                                           #         
+    #                                           #
     #          Http Configs                     #
     #                                           #
     #############################################
 
-    def __url_compose__(self, n_page = 0, **kwds) -> str:
+    def __url_compose__(self, n_page=0, **kwds) -> str:
         """"""
 
     @property
     def __headers__(self) -> dict:
         """"""
-        
+
         return {}
 
-    def __body__(self, n_page = 0, **kwds) -> dict:
+    def __body__(self, n_page=0, **kwds) -> dict:
         """"""
 
         return {}
-    
 
     #############################################
-    #                                           #         
+    #                                           #
     #       Manipulation Config                 #
     #                                           #
     #############################################
+
     def __job_id__(self, job):
         return {'id': job['id']}
-    
 
-    def __save__(self, index, job, check = True):
-        already = self.db.exists( **self.__job_id__(job))
+    def __save__(self, index, job, check=True):
+        already = self.db.exists(**self.__job_id__(job))
         self.logger(index, job, already)
 
         if not check or not already:
@@ -69,13 +70,13 @@ class HttpScraper:
     def http_client(self):
         if hasattr(self, 'session'):
             return self.session
-        
+
         return requests
 
-    def post(self, url, body = {}) -> dict:
+    def post(self, url, body={}) -> dict:
         response = self.http_client.post(
-            url=url, 
-            data=json.dumps(body), 
+            url=url,
+            data=json.dumps(body),
             headers=self.__headers__
         )
 
@@ -85,21 +86,22 @@ class HttpScraper:
             print(response.content)
 
             raise e
-    
-    def get(self, url) -> dict:
+
+    def get(self, url, json_load=True) -> dict:
         response = self.http_client.get(
-            url=url, 
+            url=url,
             headers=self.__headers__
         )
 
-        try:
-            return json.loads(response.content)
-        except json.JSONDecodeError as e:
-            print(response.content)
+        if json_load:
+            try:
+                return json.loads(response.content)
+            except json.JSONDecodeError as e:
+                print(response.content)
+                raise e
+        return response.content
 
-            raise e
-
-    def save_all(self, n_page = -1, skips = 0, filter_condition = lambda j: True, parallel = False):
+    def save_all(self, n_page=-1, skips=0, filter_condition=lambda j: True, parallel=False):
         print(f'....... Downloading all jobs in {self.db_name} 🤑')
         exe = ThreadPoolExecutor()
         page, index = skips, 0
@@ -114,7 +116,7 @@ class HttpScraper:
 
                 if len(jobs) == 0 or page == n_page:
                     break
-                
+
                 if parallel and self.delay == 0:
                     print(parallel)
                     list(exe.map(
@@ -125,19 +127,20 @@ class HttpScraper:
                 else:
                     for i, j in zip(range(index, index + len(jobs)), jobs):
                         time.sleep(self.delay)
-                        self.__save__(i, j) 
+                        self.__save__(i, j)
 
                 page += 1
                 index += len(jobs)
-        
+
         except KeyboardInterrupt:
             pass
         except ConnectionError:
             pass
-        
-        print(f'....... The {self.db_name} scraper has finished, {page - skips} pages and {index} jobs have been viewed')
 
-    def update(self, parallel = False, force = False):
+        print(
+            f'....... The {self.db_name} scraper has finished, {page - skips} pages and {index} jobs have been viewed')
+
+    def update(self, parallel=False, force=False):
         print(f'....... Updating jobs in {self.db_name}')
         exe = ThreadPoolExecutor()
 
