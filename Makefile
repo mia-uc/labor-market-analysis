@@ -28,7 +28,7 @@ run_laborum:
 	docker rm laborum
 
 build_getonbrd:
-	echo "# START CRON JOB\n5 9 * * * python -m scrapers getonbrd \n# END CRON JOB" > crontab
+	echo "# START CRON JOB\n14 */21 * * * python -m scrapers getonbrd \n# END CRON JOB" > crontab
 	docker build -t getonboard -f ./Dockerfile .
 
 run_getonbrd:
