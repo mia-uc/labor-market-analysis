@@ -28,6 +28,7 @@ En este casos nuestra fuente de datos serian las múltiples páginas de la web q
 - [] https://www.chiletrabajos.cl
 - [] https://lapieza.io/en
 - [] https://www.interfell.com/#/app/home
+- [] https://cl.talent.com/jobs
 
 - [] https://www.infojobs.net
 - [] https://www.kitempleo.cl
@@ -42,7 +43,6 @@ En este casos nuestra fuente de datos serian las múltiples páginas de la web q
 - [] https://www.aliantec.com/busquedas-activas/
 - [] https://www.getmanfred.com/es/portal
 - [] https://app.goboon.co/home
-- [] https://cl.talent.com/jobs
 - [] https://soaint.hiringroom.com
 - [] https://flexjobs.com
 - [] https://whoishiring.io

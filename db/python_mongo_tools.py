@@ -1,11 +1,10 @@
 from pymongo import MongoClient
 import os
+import logging
+from datetime import datetime
 
-CONNECTED = """
-#########################################################################
-    Init Mongo Connection (ConnectionString = {connection_string}/{db}) 
-#########################################################################
-"""
+log = logging.getLogger(__name__)
+CONNECTED = """Init Mongo Connection (ConnectionString = {connection_string}/{db}"""
 
 
 class MongoInterfaces:
@@ -16,9 +15,13 @@ class MongoInterfaces:
         db = client[db_name]
         self.doc = db[collection]
 
-        print(CONNECTED.format(connection_string=connection_string, db=db_name))
+        log.info(CONNECTED.format(
+            connection_string=connection_string,
+            db=db_name
+        ))
 
-    def insert(self, entity):
+    def insert(self, entity: dict):
+        entity['created_at'] = datetime.utcnow()
         return self.doc.insert_one(entity)
 
     def exists(self, **question):

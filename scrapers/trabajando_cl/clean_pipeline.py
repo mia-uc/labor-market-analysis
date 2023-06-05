@@ -1,5 +1,5 @@
-from src.etl_process.python_mongo_tools import MongoInterfaces
-from src.etl_process.jobs_db_center import JobsDBCenter
+from db.python_mongo_tools import MongoInterfaces
+from db.jobs_db_center import JobsDBCenter
 from bs4 import BeautifulSoup
 
 

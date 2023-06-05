@@ -1,6 +1,6 @@
 import requests
 import json
-from src.etl_process.python_mongo_tools import MongoInterfaces
+from db.python_mongo_tools import MongoInterfaces
 from concurrent.futures import ThreadPoolExecutor
 from functools import partial
 from logging import warn

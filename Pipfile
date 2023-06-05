@@ -13,6 +13,8 @@ pandas = "*"
 fuzzywuzzy = "*"
 streamlit = "*"
 python-levenshtein = "*"
+python-telegram-bot = "*"
+pytelegrambotapi = "*"
 
 [dev-packages]
 python-dotenv = "*"

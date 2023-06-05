@@ -28,9 +28,11 @@ run_laborum:
 	docker rm laborum
 
 run_getonbrd:
-	docker run --env-file=.docker.env --name getonboard jobs_scrapers python main.py getonboard
-	docker stop getonboard
-	docker rm getonboard
+	echo "# START CRON JOB\n0 9 * * * python -m scrapers getonbrd \n# END CRON JOB" > crontab
+	docker build -t getonboard -f ./Dockerfile .
+	docker run --env-file=.docker.env --name getonboard getonboard
+	docker stop trabajando_cl
+	docker rm trabajando_cl
 
 run_trabajando_cl:
 	docker run --env-file=.docker.env --name trabajando_cl jobs_scrapers python main.py trabajando-cl
@@ -46,3 +48,5 @@ migrate_mongo:
 	docker run --env-file=.docker.env --name migrate_mongo jobs_scrapers python main.py mongo-migrate    
 	docker stop migrate_mongo
 	docker rm migrate_mongo    
+
+

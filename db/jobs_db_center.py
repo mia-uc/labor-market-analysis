@@ -1,5 +1,5 @@
 
-from src.etl_process.python_mongo_tools import MongoInterfaces
+from db.python_mongo_tools import MongoInterfaces
 from datetime import datetime
 
 from concurrent.futures import ThreadPoolExecutor

@@ -1,11 +1,10 @@
-from src.python_core.http_scarper import HttpScraper
+from scrapers.http_scarper import HttpScraper
 import os
 import requests
-import json
-import base64
 from datetime import datetime
 from bs4 import BeautifulSoup
 import re
+from logging import warn
 
 
 # References http://trabajando.cl
@@ -80,9 +79,19 @@ class GetOnBoardScraper(HttpScraper):
         for job in response['jobs']:
             try:
                 job['published_at'] = datetime.strptime(
-                    job['published_at'], '%b %d').replace(datetime.now().year)
+                    job['published_at'], '%b %d').\
+                    replace(datetime.now().year)
             except:
                 pass
+            try:
+                job['published_at'] = datetime.strptime(
+                    job['published_at'], '%b %d, %Y').\
+                    replace(datetime.now().year)
+            except:
+                pass
+
+            if type(job['published_at']) != datetime:
+                warn("Published at wasn't detected")
 
         return response['jobs']
 
