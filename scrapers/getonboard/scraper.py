@@ -77,18 +77,18 @@ class GetOnBoardScraper(HttpScraper):
         response = self.post(self.__url_compose__(page))
 
         for job in response['jobs']:
-            try:
-                job['published_at'] = datetime.strptime(
-                    job['published_at'], '%b %d').\
-                    replace(datetime.now().year)
-            except:
-                pass
-            try:
-                job['published_at'] = datetime.strptime(
-                    job['published_at'], '%b %d, %Y').\
-                    replace(datetime.now().year)
-            except:
-                pass
+            job['published_at'] = job['published_at'].strip()
+
+            for pattern in [
+                '%b %d', '%b %d, %Y', '%B %d, %Y'
+            ]:
+                try:
+                    job['published_at'] = datetime.strptime(
+                        job['published_at'], pattern).\
+                        replace(datetime.now().year)
+                    break
+                except:
+                    pass
 
             if type(job['published_at']) != datetime:
                 warn("Published at wasn't detected")

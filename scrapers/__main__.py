@@ -6,9 +6,13 @@ from datetime import datetime
 from scrapers.getonboard import GetOnBoardScraper, GetOnBoardNotifyTransformer
 from scrapers.laborum import LaborumScraper
 from dotenv import load_dotenv
+from bots.telegram_notifier import NotifierBot
+import os
+
 
 load_dotenv()
 app = Typer()
+
 Logger = "..... Cleaning the job {id} => {title}"
 
 date = datetime.utcnow().replace(
@@ -24,6 +28,9 @@ def getonbrd(
     not_clean: bool = Option(False, "--not_clean"),
 ):
 
+    admin_chat = os.getenv('CHAT')
+    notifier = NotifierBot()
+    notifier.push(admin_chat, f"The GetOnBoard Scraper has started for {date}")
     if not not_scraper:
         scraper = GetOnBoardScraper()
         scraper.save_all(
@@ -34,14 +41,20 @@ def getonbrd(
             )
         )
 
+    notifier.push(
+        admin_chat, f"The GetOnBoard Scraper has started to clean the data")
     if not not_clean:
         print('....... Cleaning all jobs in GetOnBoard 🧐')
         db = MongoInterfaces('GetOnBoard')
         notify_db = NotifyModel()
+        count = 0
         for job in db.all(created_at={'$gt': date}):
             tjob = GetOnBoardNotifyTransformer(job)
             notify_db.save(tjob)
             print(Logger.format(id=job['id'], title=job['title']))
+            count += 0
+        notifier.push(
+            admin_chat, f"{count} jobs have been scraped and cleaned from GetOnBoard")
 
 
 @app.command()
