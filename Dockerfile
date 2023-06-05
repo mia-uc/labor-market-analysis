@@ -7,9 +7,13 @@ WORKDIR /usr/src/app
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# install dependencies
+# install commands
+RUN apt-get update 
+RUN apt-get install cron
 RUN pip install --upgrade pip
 RUN pip install pipenv
+
+# install dependencies
 COPY ./Pipfile /usr/src/app/Pipfile
 COPY ./Pipfile.lock /usr/src/app/Pipfile.lock
 RUN pipenv install --dev --system --deploy
