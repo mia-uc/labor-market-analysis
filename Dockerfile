@@ -9,7 +9,7 @@ ENV PYTHONUNBUFFERED 1
 
 # install commands
 RUN apt-get update 
-RUN apt-get install cron
+RUN apt-get install -y cron
 RUN pip install --upgrade pip
 RUN pip install pipenv
 
