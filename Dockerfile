@@ -23,4 +23,6 @@ COPY . /usr/src/app/
 
 RUN crontab /etc/cron.d/crontab
 
+RUN echo "America/New_York" > /etc/timezone && dpkg-reconfigure --frontend noninteractive tzdata
+
 CMD ["cron", "-f"]

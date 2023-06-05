@@ -27,12 +27,12 @@ run_laborum:
 	docker stop laborum
 	docker rm laborum
 
-run_getonbrd:
-	echo "# START CRON JOB\n0 9 * * * python -m scrapers getonbrd \n# END CRON JOB" > crontab
+build_getonbrd:
+	echo "# START CRON JOB\n5 9 * * * python -m scrapers getonbrd \n# END CRON JOB" > crontab
 	docker build -t getonboard -f ./Dockerfile .
+
+run_getonbrd:
 	docker run --env-file=.docker.env --name getonboard getonboard
-	docker stop trabajando_cl
-	docker rm trabajando_cl
 
 run_trabajando_cl:
 	docker run --env-file=.docker.env --name trabajando_cl jobs_scrapers python main.py trabajando-cl
