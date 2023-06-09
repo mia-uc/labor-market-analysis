@@ -18,9 +18,10 @@ COPY ./Pipfile /usr/src/app/Pipfile
 COPY ./Pipfile.lock /usr/src/app/Pipfile.lock
 RUN pipenv install --dev --system --deploy
 
+COPY . /usr/src/app/
+
 CMD ["python"]
 # COPY ./crontab /etc/cron.d/crontab
-# COPY . /usr/src/app/
 
 # RUN crontab /etc/cron.d/crontab
 
