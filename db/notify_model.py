@@ -50,7 +50,7 @@ class NotifyModel(MongoInterfaces):
         sms += '\n\n'
         add_line = False
 
-        from_ = list(lambda x: x, [job.city, job.country, job.origin])
+        from_ = list(filter(lambda x: x, [job.city, job.country, job.origin]))
         if from_:
             add_line = True
             sms += f'🌎 {from_[0]}'
@@ -59,9 +59,9 @@ class NotifyModel(MongoInterfaces):
 
             sms += '\n'
 
-        details = list(lambda x: x, [
+        details = list(filter(lambda x: x, [
             job.seniority, job.modality, job.contract
-        ])
+        ]))
 
         if details:
             add_line = True

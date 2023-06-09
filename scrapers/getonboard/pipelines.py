@@ -10,7 +10,10 @@ Logger = "..... Cleaning the job {id} => {title}"
 
 
 def basic_pipeline(parallel, not_scraper, not_clean):
+    first_time = True
+
     def f():
+        nonlocal first_time
 
         date = datetime.utcnow().replace(
             hour=0, minute=0, second=0, microsecond=0
@@ -25,12 +28,14 @@ def basic_pipeline(parallel, not_scraper, not_clean):
             scraper = GetOnBoardScraper()
             scraper.save_all(
                 filter_condition=lambda job: (
+                    first_time or
                     job["pinned"] or
                     type(job['published_at']) != datetime or
                     job['published_at'] >= date
                 )
             )
 
+        first_time = False
         notifier.push(
             admin_chat, f"The GetOnBoard Scraper has started to clean the data")
         if not not_clean:
