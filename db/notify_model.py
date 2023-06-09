@@ -25,10 +25,10 @@ class NotifyModel(MongoInterfaces):
             'sms': self.build_sms(job)
         }
 
-        if self.doc.exists(id=job.id, origin=job.currency):
-            self.doc.update(body, id=job.id, origin=job.currency)
+        if self.exists(id=job.id, origin=job.currency):
+            self.update(body, id=job.id, origin=job.currency)
         else:
-            self.doc.insert(body)
+            self.insert(body)
 
     def build_sms(self, job):
         sms = f'{job.title}\n'
