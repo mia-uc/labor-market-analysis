@@ -2,7 +2,7 @@ from .python_mongo_tools import MongoInterfaces
 
 
 class NotifyModel(MongoInterfaces):
-    def __init__(self, origin) -> None:
+    def __init__(self) -> None:
         super().__init__("NotifyDB")
 
     def save(self, job):
