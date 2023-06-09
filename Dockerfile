@@ -18,11 +18,12 @@ COPY ./Pipfile /usr/src/app/Pipfile
 COPY ./Pipfile.lock /usr/src/app/Pipfile.lock
 RUN pipenv install --dev --system --deploy
 
-COPY ./crontab /etc/cron.d/crontab
-COPY . /usr/src/app/
+CMD ["python"]
+# COPY ./crontab /etc/cron.d/crontab
+# COPY . /usr/src/app/
 
-RUN crontab /etc/cron.d/crontab
+# RUN crontab /etc/cron.d/crontab
 
-RUN echo "America/New_York" > /etc/timezone && dpkg-reconfigure --frontend noninteractive tzdata
+# RUN echo "America/New_York" > /etc/timezone && dpkg-reconfigure --frontend noninteractive tzdata
 
-CMD ["cron", "-f"]
+# CMD ["cron", "-f"]

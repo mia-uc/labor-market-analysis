@@ -15,6 +15,7 @@ streamlit = "*"
 python-levenshtein = "*"
 python-telegram-bot = "*"
 pytelegrambotapi = "*"
+schedule = "*"
 
 [dev-packages]
 python-dotenv = "*"

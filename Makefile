@@ -5,6 +5,10 @@ drop:
 build:
 	docker build -t jobs_scrapers -f ./Dockerfile .
 
+run_getonbrd:
+	docker run --env-file=.docker.env --name getonboard jobs_scrapers python -m scrapers getonbrd
+
+
 # run_getonbrd:
 # 	docker run --env-file=.docker.env --name get_on_board get_on_board
 
@@ -28,11 +32,10 @@ run_laborum:
 	docker rm laborum
 
 build_getonbrd:
-	echo "# START CRON JOB\n40 */1 * * * python -m scrapers getonbrd \n# END CRON JOB" > crontab
 	docker build -t getonboard -f ./Dockerfile .
 
 run_getonbrd:
-	docker run --env-file=.docker.env --name getonboard getonboard
+	docker run --env-file=.docker.env --name getonboard jobs_scrapers python -m scrapers getonbrd
 
 run_trabajando_cl:
 	docker run --env-file=.docker.env --name trabajando_cl jobs_scrapers python main.py trabajando-cl
