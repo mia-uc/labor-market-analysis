@@ -34,9 +34,6 @@ run_laborum:
 build_getonbrd:
 	docker build -t getonboard -f ./Dockerfile .
 
-run_getonbrd:
-	docker run --env-file=.docker.env --name getonboard jobs_scrapers python -m scrapers getonbrd
-
 run_trabajando_cl:
 	docker run --env-file=.docker.env --name trabajando_cl jobs_scrapers python main.py trabajando-cl
 	docker stop trabajando_cl
