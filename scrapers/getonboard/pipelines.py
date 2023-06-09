@@ -9,10 +9,14 @@ import os
 Logger = "..... Cleaning the job {id} => {title}"
 
 
-def basic_pipeline(
-    date, parallel, not_scraper, not_clean,
-):
+def basic_pipeline(parallel, not_scraper, not_clean):
     def f():
+
+        date = datetime.utcnow().replace(
+            hour=0, minute=0, second=0, microsecond=0
+        )
+        print(f'....... {date} .......')
+
         admin_chat = os.getenv('CHAT')
         notifier = NotifierBot()
         notifier.push(

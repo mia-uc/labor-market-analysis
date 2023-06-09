@@ -11,21 +11,13 @@ load_dotenv()
 app = Typer()
 
 
-date = datetime.utcnow().replace(
-    hour=0, minute=0, second=0, microsecond=0
-)
-print(f'....... {date} .......')
-
-
 @app.command()
 def getonbrd(
     parallel: bool = Option(False, "--parallel"),
     not_scraper: bool = Option(False, "--not_scraper"),
     not_clean: bool = Option(False, "--not_clean"),
 ):
-    func = basic_pipeline(
-        date, parallel, not_scraper, not_clean
-    )
+    func = basic_pipeline(parallel, not_scraper, not_clean)
     schedule.every(24).hours.do(func)
 
     func()
@@ -40,9 +32,7 @@ def laborum(
     not_scraper: bool = Option(False, "--not_scraper"),
     not_clean: bool = Option(False, "--not_clean"),
 ):
-    func = basic_pipeline(
-        date, parallel, not_scraper, not_clean
-    )
+    func = basic_pipeline(parallel, not_scraper, not_clean)
     schedule.every(24).hours.do(func)
 
     func()
