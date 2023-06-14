@@ -29,11 +29,13 @@ class WorkingCLScraper(HttpScraper):
 
         return ''.join([
             "https://www.trabajando.cl/api/searchjob?",
-            f"Pagina={n_page}",
-            "&AliasOrden=3",
-            "&TextoLibre",
-            "&IDEmpresas",
-            "&avisoconfidencial",
+            f"Pagina={n_page + 1}",
+            '&orden=FECHA_PUBLICACION',
+            '&tipoOrden=DESC'
+            # "&AliasOrden=3",
+            # "&TextoLibre",
+            # "&IDEmpresas",
+            # "&avisoconfidencial",
         ])
 
     @property

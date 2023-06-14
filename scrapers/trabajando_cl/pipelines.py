@@ -48,7 +48,8 @@ def basic_pipeline(parallel, not_scraper, not_clean):
             for job in db.all(created_at={'$gt': date}):
                 tjob = WorkingCLNotifyTransformer(job)
                 notify_db.save(tjob)
-                print(Logger.format(id=job['id'], title=job['title']))
+                print(Logger.format(
+                    id=job['idOferta'], title=job['nombreCargo']))
                 count += 1
             notifier.push(
                 admin_chat, f"{count} jobs have been scraped and cleaned from WorkingCL")
