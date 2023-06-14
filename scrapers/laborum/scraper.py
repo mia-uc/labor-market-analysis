@@ -84,8 +84,7 @@ class LaborumScraper(HttpScraper):
             for pattern in ["%d-%m-%Y"]:
                 try:
                     job['fechaPublicacion'] = datetime.strptime(
-                        job['fechaPublicacion'], pattern).\
-                        replace(datetime.now().year)
+                        job['fechaPublicacion'], pattern)
                     break
                 except:
                     pass

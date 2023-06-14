@@ -26,14 +26,17 @@ def basic_pipeline(parallel, not_scraper, not_clean):
             admin_chat, f"The GetOnBoard Scraper has started for {date}")
         if not not_scraper:
             scraper = GetOnBoardScraper()
-            scraper.save_all(
-                filter_condition=lambda job: (
-                    first_time or
-                    job["pinned"] or
-                    type(job['published_at']) != datetime or
-                    job['published_at'] >= date
+            try:
+                scraper.save_all(
+                    filter_condition=lambda job: (
+                        first_time or
+                        job["pinned"] or
+                        type(job['published_at']) != datetime or
+                        job['published_at'] >= date
+                    )
                 )
-            )
+            except KeyboardInterrupt:
+                pass
 
         first_time = False
         notifier.push(
