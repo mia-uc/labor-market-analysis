@@ -90,7 +90,7 @@ class GetOnBoardScraper(HttpScraper):
                 except:
                     pass
 
-            if type(job['published_at']) != datetime:
+            else:
                 warn("Published at wasn't detected")
 
         return response['jobs']

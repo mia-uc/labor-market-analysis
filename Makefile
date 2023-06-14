@@ -8,6 +8,8 @@ build:
 run_getonbrd:
 	docker run --env-file=.docker.env --name getonboard jobs_scrapers python -m scrapers getonbrd
 
+run_laborum:
+	docker run --env-file=.docker.env --name laborum jobs_scrapers python -m scrapers laborum
 
 # run_getonbrd:
 # 	docker run --env-file=.docker.env --name get_on_board get_on_board
@@ -26,10 +28,6 @@ run:
 	docker run -d --env-file=.docker.env --name getonboard jobs_scrapers python main.py getonboard
 	docker run -d --env-file=.docker.env --name trabajando_cl jobs_scrapers python main.py trabajando-cl
 
-run_laborum:
-	docker run --env-file=.docker.env --name laborum jobs_scrapers python main.py laborum
-	docker stop laborum
-	docker rm laborum
 
 build_getonbrd:
 	docker build -t getonboard -f ./Dockerfile .

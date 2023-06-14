@@ -1,8 +1,7 @@
 from scrapers.http_scarper import HttpScraper
-import os
 import requests
-import json
-import base64
+from logging import warn
+import datetime
 
 
 class LaborumScraper(HttpScraper):
@@ -78,6 +77,21 @@ class LaborumScraper(HttpScraper):
                 "internacional": False
             }
         )
+
+        for job in response['content']:
+            job['fechaPublicacion'] = job['fechaPublicacion'].strip()
+
+            for pattern in ["%d-%m-%Y"]:
+                try:
+                    job['fechaPublicacion'] = datetime.strptime(
+                        job['fechaPublicacion'], pattern).\
+                        replace(datetime.now().year)
+                    break
+                except:
+                    pass
+
+            else:
+                warn("Published at wasn't detected")
 
         return response['content']
 
