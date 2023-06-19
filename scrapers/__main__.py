@@ -18,6 +18,7 @@ def cronjob(func):
 
     func()
     while True:
+        print('....... Waiting')
         schedule.run_pending()
         time.sleep(1)
 
@@ -27,12 +28,14 @@ def getonbrd(
     parallel: bool = Option(False, "--parallel"),
     not_scraper: bool = Option(False, "--not_scraper"),
     not_clean: bool = Option(False, "--not_clean"),
+    first_time: bool = Option(False, "--first_time"),
 ):
     func = GetOnBoardPipeline.basic_pipeline(
-        parallel, not_scraper, not_clean
+        parallel, not_scraper, not_clean, first_time=first_time
     )
 
-    cronjob(func)
+    # cronjob(func)
+    func()
 
 
 @app.command()
@@ -40,11 +43,14 @@ def laborum(
     parallel: bool = Option(False, "--parallel"),
     not_scraper: bool = Option(False, "--not_scraper"),
     not_clean: bool = Option(False, "--not_clean"),
+    first_time: bool = Option(False, "--first_time"),
 ):
     func = LaborumPipeline.basic_pipeline(
-        parallel, not_scraper, not_clean)
+        parallel, not_scraper, not_clean, first_time=first_time
+    )
 
-    cronjob(func)
+    # cronjob(func)
+    func()
 
 
 @app.command()
@@ -52,11 +58,14 @@ def working_cl(
     parallel: bool = Option(False, "--parallel"),
     not_scraper: bool = Option(False, "--not_scraper"),
     not_clean: bool = Option(False, "--not_clean"),
+    first_time: bool = Option(False, "--first_time"),
 ):
     func = WorkingClPipeline.basic_pipeline(
-        parallel, not_scraper, not_clean)
+        parallel, not_scraper, not_clean, first_time=first_time
+    )
 
-    cronjob(func)
+    # cronjob(func)
+    func()
 
 
 if __name__ == '__main__':

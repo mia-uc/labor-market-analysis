@@ -9,9 +9,7 @@ import os
 Logger = "..... Cleaning the job {id} => {title}"
 
 
-def basic_pipeline(parallel, not_scraper, not_clean):
-    first_time = True
-
+def basic_pipeline(parallel, not_scraper, not_clean, first_time=True):
     def f():
         nonlocal first_time
 
@@ -38,20 +36,51 @@ def basic_pipeline(parallel, not_scraper, not_clean):
             except KeyboardInterrupt:
                 pass
 
+            except Exception as e:
+                notifier.push(
+                    admin_chat,
+                    f'The GetOnBoard Scraper has stopped because\n{e}'
+                )
+
         first_time = False
-        notifier.push(
-            admin_chat, f"The GetOnBoard Scraper has started to clean the data")
+
         if not not_clean:
+            notifier.push(
+                admin_chat,
+                f"The GetOnBoard Scraper has started to clean the data"
+            )
+
             print('....... Cleaning all jobs in GetOnBoard 🧐')
             db = MongoInterfaces('GetOnBoard')
             notify_db = NotifyModel()
             count = 0
-            for job in db.all(created_at={'$gt': date}):
-                tjob = GetOnBoardNotifyTransformer(job)
-                notify_db.save(tjob)
-                print(Logger.format(id=job['id'], title=job['title']))
-                count += 1
+            try:
+                for job in db.all(cleaned_at={'$exists': False}):
+                    print(Logger.format(id=job['id'], title=job['title']))
+                    # Clean Job
+                    tjob = GetOnBoardNotifyTransformer(job)
+                    # Save cleaned job
+                    notify_db.save(tjob)
+                    # Update dirty job
+                    db.update(
+                        {'cleaned_at': date},
+                        url=job['url'],
+                        id=job['id']
+                    )
+
+                    count += 1
+            except Exception as e:
+                notifier.push(
+                    admin_chat,
+                    f'The GetOnBoard ETL has stopped because\n{str(e)}'
+                )
+
+            print(
+                f"....... {count} jobs have been scraped and cleaned from GetOnBoard"
+            )
+
             notifier.push(
-                admin_chat, f"{count} jobs have been scraped and cleaned from GetOnBoard")
+                admin_chat, f"{count} jobs have been scraped and cleaned from GetOnBoard"
+            )
 
     return f

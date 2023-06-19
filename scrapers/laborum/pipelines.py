@@ -9,8 +9,7 @@ import os
 Logger = "..... Cleaning the job {id} => {title}"
 
 
-def basic_pipeline(parallel, not_scraper, not_clean):
-    first_time = True
+def basic_pipeline(parallel, not_scraper, not_clean, first_time=True):
 
     def f():
         nonlocal first_time
