@@ -5,6 +5,15 @@ from bs4 import BeautifulSoup
 class WorkingCLNotifyTransformer(Transformer):
 
     @property
+    def name(self):
+        if 'cargo' in self.job:
+            return self.job['cargo']
+        if 'nombreCargo' in self.job:
+            return self.job['nombreCargo']
+
+        raise Exception(f"No se detector el nombre el job {self.idOferta}")
+
+    @property
     def contract(self):
         # 'Full-time',
         # 'Part-time',
@@ -137,7 +146,7 @@ class WorkingCLNotifyTransformer(Transformer):
     def to_dict(self):
         return {
             "id": self.idOferta,
-            "name": self.nombreCargo,
+            "name": self.name,
             'min_salary': self.salary,
             'max_salary': self.salary,
             'experience': self.seniority,
