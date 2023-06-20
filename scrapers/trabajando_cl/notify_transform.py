@@ -91,7 +91,12 @@ class WorkingCLNotifyTransformer(Transformer):
 
     @property
     def body(self):
-        soup = BeautifulSoup(self.job['descripcionOferta'], "html.parser")
+        try:
+            description = self.job['descripcionOferta']
+        except KeyError:
+            description = self.job['descripcion']
+
+        soup = BeautifulSoup(description, "html.parser")
         text = soup.get_text()
 
         try:
