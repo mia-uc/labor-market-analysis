@@ -12,7 +12,7 @@ run_laborum:
 	docker run --env-file=.docker.env --name laborum jobs_scrapers python -m scrapers laborum ${flags}
 
 run_working:
-	docker run --env-file=.docker.env --name working_cl jobs_scrapers python -m scrapers working-cl ${flags}
+	docker run --env-file=.docker.env --name workingcl jobs_scrapers python -m scrapers workingcl ${flags}
 
 # run_getonbrd:
 # 	docker run --env-file=.docker.env --name get_on_board get_on_board
@@ -31,6 +31,9 @@ run:
 	docker run -d --env-file=.docker.env --name getonboard jobs_scrapers python main.py getonboard
 	docker run -d --env-file=.docker.env --name trabajando_cl jobs_scrapers python main.py trabajando-cl
 
-   
-
-
+update_and_run:
+	git pull origin main
+	docker stop ${container}
+	docker rm ${container}	
+	docker build -t jobs_scrapers -f ./Dockerfile .
+	docker run --env-file=.docker.env --name ${container} jobs_scrapers python -m scrapers ${container} ${flags}	

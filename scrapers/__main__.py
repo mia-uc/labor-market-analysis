@@ -54,7 +54,7 @@ def laborum(
 
 
 @app.command()
-def working_cl(
+def workingcl(
     parallel: bool = Option(False, "--parallel"),
     not_scraper: bool = Option(False, "--not_scraper"),
     not_clean: bool = Option(False, "--not_clean"),
