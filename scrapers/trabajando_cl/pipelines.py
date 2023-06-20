@@ -40,10 +40,8 @@ def basic_pipeline(parallel, not_scraper, not_clean, first_time=True):
             except KeyboardInterrupt:
                 pass
             except Exception as e:
-                notifier.push(
-                    admin_chat,
-                    f'The WorkingCL Scraper has stopped because\n{e}'
-                )
+                notifier.error(admin_chat, f'WorkingCL Scraper')
+                raise e
 
         first_time = False
         if not not_clean:
@@ -72,11 +70,7 @@ def basic_pipeline(parallel, not_scraper, not_clean, first_time=True):
 
                     count += 1
             except Exception as e:
-                notifier.push(
-                    admin_chat,
-                    f'The WorkingCL ETL has stopped because\n{e}'
-                )
-
+                notifier.error(admin_chat, f'WorkingCL ETL')
                 raise e
 
             print(

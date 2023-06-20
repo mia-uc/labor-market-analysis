@@ -37,10 +37,8 @@ def basic_pipeline(parallel, not_scraper, not_clean, first_time=True):
                 pass
 
             except Exception as e:
-                notifier.push(
-                    admin_chat,
-                    f'The GetOnBoard Scraper has stopped because\n{e}'
-                )
+                notifier.error(admin_chat, f'GetOnBoard Scraper')
+                raise e
 
         first_time = False
 
@@ -70,10 +68,8 @@ def basic_pipeline(parallel, not_scraper, not_clean, first_time=True):
 
                     count += 1
             except Exception as e:
-                notifier.push(
-                    admin_chat,
-                    f'The GetOnBoard ETL has stopped because\n{str(e)}'
-                )
+                notifier.error(admin_chat, f'GetOnBoard ETL')
+                raise e
 
             print(
                 f"....... {count} jobs have been scraped and cleaned from GetOnBoard"
