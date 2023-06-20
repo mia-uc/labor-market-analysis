@@ -28,7 +28,7 @@ class MongoInterfaces:
         return self.doc.find_one(question)
 
     def all(self, limit=0, skip=0, sort=None, **condition):
-        return self.doc.find(condition, limit=limit, skip=skip, sort=sort)
+        return self.doc.find(condition, limit=limit, skip=skip, sort=sort).max_time_ms(10 * 60 * 1000)
 
     def update(self, body, **keys):
         return self.doc.update_many(keys, {'$set': body})
