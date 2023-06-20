@@ -61,7 +61,7 @@ def basic_pipeline(parallel, not_scraper, not_clean, first_time=True):
                     # Clean Job
                     tjob = WorkingCLNotifyTransformer(job)
 
-                    print(Logger.format(id=tjob.idOferta, title=job.name))
+                    print(Logger.format(id=tjob.idOferta, title=tjob.name))
 
                     # Save cleaned job
                     notify_db.save(tjob)
