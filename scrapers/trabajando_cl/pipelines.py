@@ -59,13 +59,12 @@ def basic_pipeline(parallel, not_scraper, not_clean, first_time=True):
             count = 0
             try:
                 for job in db.all(cleaned_at={'$exists': False}):
-                    print(Logger.format(
-                        id=job['idOferta'],
-                        title=job['nombreCargo'])
-                    )
 
                     # Clean Job
                     tjob = WorkingCLNotifyTransformer(job)
+
+                    print(Logger.format(id=tjob.idOferta, title=job.name))
+
                     # Save cleaned job
                     notify_db.save(tjob)
                     # Update dirty job
