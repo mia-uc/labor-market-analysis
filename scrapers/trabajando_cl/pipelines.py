@@ -73,9 +73,10 @@ def basic_pipeline(parallel, not_scraper, not_clean, first_time=True):
 
                     count += 1
             except Exception as e:
+                print(e)
                 notifier.push(
                     admin_chat,
-                    f'The WorkingCL ETL has stopped because\n{str(e)}'
+                    f'The WorkingCL ETL has stopped because\n{e}'
                 )
 
             print(
