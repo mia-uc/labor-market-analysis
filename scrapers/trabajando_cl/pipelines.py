@@ -73,11 +73,12 @@ def basic_pipeline(parallel, not_scraper, not_clean, first_time=True):
 
                     count += 1
             except Exception as e:
-                print(e)
                 notifier.push(
                     admin_chat,
                     f'The WorkingCL ETL has stopped because\n{e}'
                 )
+
+                raise e
 
             print(
                 f"....... {count} jobs have been scraped and cleaned from WorkingCL"
