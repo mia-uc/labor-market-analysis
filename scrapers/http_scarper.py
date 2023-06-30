@@ -5,12 +5,13 @@ from concurrent.futures import ThreadPoolExecutor
 from functools import partial
 from logging import warn
 import time
+import os
 
 
 class HttpScraper:
     def __init__(self, db_name, delay=0) -> None:
-        self.db_name = db_name
-        self.db = MongoInterfaces(db_name)
+        self.db_name = os.getenv(db_name)
+        self.db = MongoInterfaces(self.db_name)
         self.delay = delay
 
     def logger(self, index, job, already):

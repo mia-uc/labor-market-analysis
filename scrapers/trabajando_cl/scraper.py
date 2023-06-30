@@ -11,7 +11,7 @@ from logging import warn
 
 class WorkingCLScraper(HttpScraper):
     def __init__(self) -> None:
-        super().__init__('Trabajando.cl')
+        super().__init__('WORKING_CL_DB')
 
         self.cookie = os.getenv("TrabajandoCL-Cookie")
 

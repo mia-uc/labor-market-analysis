@@ -11,7 +11,7 @@ from logging import warn
 
 class GetOnBoardScraper(HttpScraper):
     def __init__(self) -> None:
-        super().__init__('GetOnBoard')
+        super().__init__('GET_ON_BOARD_DB')
 
         self.cookies = os.getenv("GetOnBoard-Cookie")
         self.x_client = os.getenv("GetOnBoard-X-CLIENT-ID")
